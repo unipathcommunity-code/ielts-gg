@@ -1060,10 +1060,11 @@ export default function ReadingTest() {
                     </div>
 
                     {/* Matching questions for this passage */}
-                    <div style={cardStyle} className={`border p-5 rounded-xl ${
+                      {psg.matchingQuestions?.length > 0 && (
+                      <div style={cardStyle} className={`border p-5 rounded-xl ${
                       readerActive ? 'border-black/10' : theme === 'dark' ? 'bg-zinc-950 border-zinc-900' : 'bg-white border-zinc-200 shadow-sm'
                     }`}>
-                      <h3 className="font-bold text-sm mb-1">Questions {psg.matchingQuestions[0].number.replace('.','')}-{psg.matchingQuestions[psg.matchingQuestions.length-1].number.replace('.','')} вЂ” Matching Information</h3>
+                      <h3 className="font-bold text-sm mb-1">Questions {psg.matchingQuestions[0]?.number?.replace('.','')}-{psg.matchingQuestions[psg.matchingQuestions.length-1]?.number?.replace('.','')} вЂ” Matching Information</h3>
                       <p className="text-xs text-zinc-500 mb-4 italic">Which paragraph (A-E) contains the following information? Write the correct letter.</p>
                       <div className="space-y-3">
                         {psg.matchingQuestions.map((q: any) => (
@@ -1079,13 +1080,15 @@ export default function ReadingTest() {
                           </div>
                         ))}
                       </div>
-                    </div>
+                      </div>
+                      )}
 
-                    {/* TF/NG questions for this passage */}
-                    <div style={cardStyle} className={`border p-5 rounded-xl ${
+                      {/* TF/NG questions for this passage */}
+                      {psg.tfQuestions?.length > 0 && (
+                      <div style={cardStyle} className={`border p-5 rounded-xl ${
                       readerActive ? 'border-black/10' : theme === 'dark' ? 'bg-zinc-950 border-zinc-900' : 'bg-white border-zinc-200 shadow-sm'
                     }`}>
-                      <h3 className="font-bold text-sm mb-1">Questions {psg.tfQuestions[0].number.replace('.','')}-{psg.tfQuestions[psg.tfQuestions.length-1].number.replace('.','')} вЂ” True / False / Not Given</h3>
+                      <h3 className="font-bold text-sm mb-1">Questions {psg.tfQuestions[0]?.number?.replace('.','')}-{psg.tfQuestions[psg.tfQuestions.length-1]?.number?.replace('.','')} вЂ” True / False / Not Given</h3>
                       <p className="text-xs text-zinc-500 mb-4 italic">Do the following statements agree with the information in the Reading Passage?</p>
                       <div className="space-y-3">
                         {psg.tfQuestions.map((q: any) => (
@@ -1111,10 +1114,11 @@ export default function ReadingTest() {
                           </div>
                         ))}
                       </div>
+                      </div>
+                      )}
                     </div>
-                  </div>
-                ))
-              )}
+                  ))
+                )}
             </div>
           ) : (
             <div className="p-6 md:p-8 flex flex-col items-center justify-start h-full">
