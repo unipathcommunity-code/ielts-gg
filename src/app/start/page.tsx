@@ -679,10 +679,10 @@ export default function StartQuiz() {
               </div>
             </div>
 
-            <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 mb-8 text-left">
+            <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-6 mb-8 text-left text-zinc-300">
               <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-3">Sizning haftalik fokus</div>
               <ul className="space-y-3 text-sm">
-                <li className="flex gap-3"><span className="text-amber-500 font-bold">1</span> <span><b>{weakness}</b> — kuchsiz bo'limingiz, har kuni 1 mashq</span></li>
+                <li className="flex gap-3"><span className="text-amber-500 font-bold">1</span> <span><b className="text-white">{weakness}</b> — kuchsiz bo'limingiz, har kuni 1 mashq</span></li>
                 <li className="flex gap-3"><span className="text-amber-500 font-bold">2</span> Jonli AI Speaking suhbati + talaffuz mashqi</li>
                 <li className="flex gap-3"><span className="text-amber-500 font-bold">3</span> AI baholash bilan Writing (TR/CC/LR/GRA)</li>
                 <li className="flex gap-3"><span className="text-amber-500 font-bold">4</span> Lug'at va kunlik so'z mashqi</li>
