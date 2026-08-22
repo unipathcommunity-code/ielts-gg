@@ -371,6 +371,7 @@ function getAllQQuestions() {
 }
 
 export default function ReadingTest() {
+  const { track } = useTrack();
   const [activePassageTab, setActivePassageTab] = useState(track.id === "multilevel" ? "ml_part1" : "universe");
   const passageId = activePassageTab; // keep for compat
   const [timeLeft, setTimeLeft] = useState(60 * 60); // 60 minutes
@@ -458,7 +459,7 @@ export default function ReadingTest() {
   const [vocabLists, setVocabLists] = useState<typeof VOCABULARY_LISTS>(VOCABULARY_LISTS);
 
   const [currentLang] = usePracticeLanguage();
-  const { track } = useTrack();
+  
   // SSR-xavfsiz hydration bayrog'i. Ilgari useState(false) + useEffect(setTrue) edi:
   // React 19 da bu effekt ichidagi setState hisoblanadi va birinchi kadr noto'g'ri chiziladi.
   const isClient = useHydrated();
@@ -1378,6 +1379,11 @@ export default function ReadingTest() {
     </div>
   );
 }
+
+
+
+
+
 
 
 

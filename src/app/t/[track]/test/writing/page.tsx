@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useTargetLevel } from "@/lib/usePrepPlan";
 import { useHydrated } from "@/lib/clientStore";
@@ -13,7 +13,7 @@ import { appendTestHistory } from "@/lib/useTestHistory";
 import { getExamFormat, nativeScoreLabel, availableSkillsFor } from "@/lib/examFormats";
 import { Difficulty, DIFFICULTY_LABELS, DIFFICULTIES } from "@/lib/difficulty";
 
-// ─── Task 1 Prompts ───────────────────────────────────────────────────────────
+// в”Ђв”Ђв”Ђ Task 1 Prompts в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
 const TASK1_PROMPTS = [
   {
     id: "t1_1",
@@ -22,7 +22,7 @@ const TASK1_PROMPTS = [
     description:
       "The bar chart below shows the percentage of people in different age groups who use the internet daily in four countries in 2023.",
     chartData:
-      "📊 [18-25]: UK 94%, USA 92%, Australia 89%, Canada 91% | [26-40]: UK 88%, USA 85%, Australia 83%, Canada 86% | [41-60]: UK 72%, USA 68%, Australia 65%, Canada 70% | [61+]: UK 45%, USA 42%, Australia 38%, Canada 44%",
+      "рџ“Љ [18-25]: UK 94%, USA 92%, Australia 89%, Canada 91% | [26-40]: UK 88%, USA 85%, Australia 83%, Canada 86% | [41-60]: UK 72%, USA 68%, Australia 65%, Canada 70% | [61+]: UK 45%, USA 42%, Australia 38%, Canada 44%",
     instruction:
       "Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.",
   },
@@ -33,7 +33,7 @@ const TASK1_PROMPTS = [
     description:
       "The line graph below shows the production of renewable energy (in gigawatts) from four different sources between 2000 and 2020.",
     chartData:
-      "📈 Solar: 2000→5GW, 2005→12GW, 2010→45GW, 2015→180GW, 2020→600GW | Wind: 2000→18GW, 2005→59GW, 2010→198GW, 2015→432GW, 2020→733GW | Hydro: 2000→700GW, 2005→760GW, 2010→850GW, 2015→1000GW, 2020→1170GW | Biomass: 2000→40GW, 2005→55GW, 2010→75GW, 2015→105GW, 2020→140GW",
+      "рџ“€ Solar: 2000в†’5GW, 2005в†’12GW, 2010в†’45GW, 2015в†’180GW, 2020в†’600GW | Wind: 2000в†’18GW, 2005в†’59GW, 2010в†’198GW, 2015в†’432GW, 2020в†’733GW | Hydro: 2000в†’700GW, 2005в†’760GW, 2010в†’850GW, 2015в†’1000GW, 2020в†’1170GW | Biomass: 2000в†’40GW, 2005в†’55GW, 2010в†’75GW, 2015в†’105GW, 2020в†’140GW",
     instruction:
       "Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.",
   },
@@ -44,7 +44,7 @@ const TASK1_PROMPTS = [
     description:
       "The pie charts below show how water was used in three different regions (Asia, Europe, North America) in 2020.",
     chartData:
-      "🥧 Asia: Agriculture 80%, Industry 12%, Domestic 8% | Europe: Agriculture 33%, Industry 44%, Domestic 23% | North America: Agriculture 40%, Industry 38%, Domestic 22%",
+      "рџҐ§ Asia: Agriculture 80%, Industry 12%, Domestic 8% | Europe: Agriculture 33%, Industry 44%, Domestic 23% | North America: Agriculture 40%, Industry 38%, Domestic 22%",
     instruction:
       "Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.",
   },
@@ -55,7 +55,7 @@ const TASK1_PROMPTS = [
     description:
       "The diagram below shows the process of manufacturing paper from trees.",
     chartData:
-      "🔄 Step 1: Trees are cut down in forests → Step 2: Logs are transported to mill → Step 3: Bark is removed from logs → Step 4: Wood is chipped into small pieces → Step 5: Chips are mixed with water & chemicals → Step 6: Pulp is cleaned & bleached → Step 7: Pulp is spread on wire mesh → Step 8: Water drains away, paper forms → Step 9: Paper is dried by heated rollers → Step 10: Paper is rolled and cut",
+      "рџ”„ Step 1: Trees are cut down in forests в†’ Step 2: Logs are transported to mill в†’ Step 3: Bark is removed from logs в†’ Step 4: Wood is chipped into small pieces в†’ Step 5: Chips are mixed with water & chemicals в†’ Step 6: Pulp is cleaned & bleached в†’ Step 7: Pulp is spread on wire mesh в†’ Step 8: Water drains away, paper forms в†’ Step 9: Paper is dried by heated rollers в†’ Step 10: Paper is rolled and cut",
     instruction:
       "Summarise the information by selecting and reporting the main stages in the process. Write at least 150 words.",
   },
@@ -66,7 +66,7 @@ const TASK1_PROMPTS = [
     description:
       "The table below shows the number of visitors (in thousands) to five museums in London between 2018 and 2022.",
     chartData:
-      "📋 British Museum: 2018=5,910, 2019=6,239, 2020=1,756, 2021=2,830, 2022=4,097 | Natural History: 2018=5,226, 2019=5,424, 2020=1,300, 2021=2,100, 2022=3,800 | Science Museum: 2018=3,259, 2019=3,341, 2020=890, 2021=1,450, 2022=2,600 | V&A: 2018=3,889, 2019=3,977, 2020=980, 2021=1,600, 2022=2,900 | Tate Modern: 2018=5,867, 2019=6,020, 2020=1,450, 2021=2,300, 2022=4,500",
+      "рџ“‹ British Museum: 2018=5,910, 2019=6,239, 2020=1,756, 2021=2,830, 2022=4,097 | Natural History: 2018=5,226, 2019=5,424, 2020=1,300, 2021=2,100, 2022=3,800 | Science Museum: 2018=3,259, 2019=3,341, 2020=890, 2021=1,450, 2022=2,600 | V&A: 2018=3,889, 2019=3,977, 2020=980, 2021=1,600, 2022=2,900 | Tate Modern: 2018=5,867, 2019=6,020, 2020=1,450, 2021=2,300, 2022=4,500",
     instruction:
       "Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.",
   },
@@ -77,7 +77,7 @@ const TASK1_PROMPTS = [
     description:
       "The bar chart shows the percentage of workers using different transportation methods to commute to work in three cities in 2022.",
     chartData:
-      "📊 Car: Tokyo 15%, London 28%, New York 30% | Public Transport: Tokyo 71%, London 55%, New York 52% | Cycling: Tokyo 4%, London 7%, New York 3% | Walking: Tokyo 8%, London 9%, New York 13% | Other: Tokyo 2%, London 1%, New York 2%",
+      "рџ“Љ Car: Tokyo 15%, London 28%, New York 30% | Public Transport: Tokyo 71%, London 55%, New York 52% | Cycling: Tokyo 4%, London 7%, New York 3% | Walking: Tokyo 8%, London 9%, New York 13% | Other: Tokyo 2%, London 1%, New York 2%",
     instruction:
       "Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.",
   },
@@ -88,7 +88,7 @@ const TASK1_PROMPTS = [
     description:
       "The graph below shows CO2 emissions (in billion tonnes) from five regions of the world between 1990 and 2020.",
     chartData:
-      "📈 China: 1990→2.5, 2000→3.5, 2010→8.0, 2020→10.1 | USA: 1990→5.0, 2000→5.8, 2010→5.5, 2020→4.7 | EU: 1990→4.2, 2000→3.8, 2010→3.5, 2020→2.8 | India: 1990→0.7, 2000→1.0, 2010→1.8, 2020→2.6 | Rest of World: 1990→5.8, 2000→6.0, 2010→7.5, 2020→8.2",
+      "рџ“€ China: 1990в†’2.5, 2000в†’3.5, 2010в†’8.0, 2020в†’10.1 | USA: 1990в†’5.0, 2000в†’5.8, 2010в†’5.5, 2020в†’4.7 | EU: 1990в†’4.2, 2000в†’3.8, 2010в†’3.5, 2020в†’2.8 | India: 1990в†’0.7, 2000в†’1.0, 2010в†’1.8, 2020в†’2.6 | Rest of World: 1990в†’5.8, 2000в†’6.0, 2010в†’7.5, 2020в†’8.2",
     instruction:
       "Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.",
   },
@@ -99,7 +99,7 @@ const TASK1_PROMPTS = [
     description:
       "The pie charts show the proportion of university students enrolled in different subjects in 2000 and 2020.",
     chartData:
-      "🥧 2000: Business 22%, Engineering 18%, Sciences 15%, Arts 20%, Law 10%, Medicine 8%, Other 7% | 2020: Business 19%, Engineering 25%, Sciences 18%, Arts 12%, Law 9%, Medicine 10%, Computer Science 7%",
+      "рџҐ§ 2000: Business 22%, Engineering 18%, Sciences 15%, Arts 20%, Law 10%, Medicine 8%, Other 7% | 2020: Business 19%, Engineering 25%, Sciences 18%, Arts 12%, Law 9%, Medicine 10%, Computer Science 7%",
     instruction:
       "Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.",
   },
@@ -110,7 +110,7 @@ const TASK1_PROMPTS = [
     description:
       "The table shows average annual household expenditure (in USD) in four countries across five categories in 2021.",
     chartData:
-      "📋 Housing: UK=12,400, USA=18,200, Germany=10,800, Japan=11,500 | Food: UK=6,200, USA=8,100, Germany=5,900, Japan=7,200 | Transport: UK=4,800, USA=9,700, Germany=5,100, Japan=4,300 | Healthcare: UK=2,100, USA=11,200, Germany=3,400, Japan=3,800 | Education: UK=1,800, USA=3,200, Germany=1,200, Japan=2,100",
+      "рџ“‹ Housing: UK=12,400, USA=18,200, Germany=10,800, Japan=11,500 | Food: UK=6,200, USA=8,100, Germany=5,900, Japan=7,200 | Transport: UK=4,800, USA=9,700, Germany=5,100, Japan=4,300 | Healthcare: UK=2,100, USA=11,200, Germany=3,400, Japan=3,800 | Education: UK=1,800, USA=3,200, Germany=1,200, Japan=2,100",
     instruction:
       "Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.",
   },
@@ -121,19 +121,19 @@ const TASK1_PROMPTS = [
     description:
       "The diagram illustrates how a solar panel system generates and distributes electricity for a home.",
     chartData:
-      "🔄 Step 1: Sunlight hits solar panels on roof → Step 2: Photovoltaic cells convert light to DC electricity → Step 3: Inverter converts DC to AC electricity → Step 4: AC electricity powers household appliances → Step 5: Excess electricity sent to grid → Step 6: Smart meter records energy in/out → Step 7: Battery storage saves surplus for night use → Step 8: Grid provides power when panels insufficient",
+      "рџ”„ Step 1: Sunlight hits solar panels on roof в†’ Step 2: Photovoltaic cells convert light to DC electricity в†’ Step 3: Inverter converts DC to AC electricity в†’ Step 4: AC electricity powers household appliances в†’ Step 5: Excess electricity sent to grid в†’ Step 6: Smart meter records energy in/out в†’ Step 7: Battery storage saves surplus for night use в†’ Step 8: Grid provides power when panels insufficient",
     instruction:
       "Summarise the information by selecting and reporting the main stages in the process. Write at least 150 words.",
   },
 ];
 
-// Tagged by topic/data complexity (not a scoring rubric — just picks which prompt to show).
+// Tagged by topic/data complexity (not a scoring rubric вЂ” just picks which prompt to show).
 const TASK1_DIFFICULTY: Record<string, Difficulty> = {
   t1_1: "medium", t1_2: "hard", t1_3: "easy", t1_4: "hard", t1_5: "hard",
   t1_6: "medium", t1_7: "hard", t1_8: "medium", t1_9: "medium", t1_10: "medium",
 };
 
-// ─── Task 2 Prompts ───────────────────────────────────────────────────────────
+// в”Ђв”Ђв”Ђ Task 2 Prompts в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
 const TASK2_PROMPTS = [
   {
     id: "t2_1",
@@ -269,7 +269,7 @@ function pickRandomByDifficulty<T extends { id: string }>(arr: T[], diffMap: Rec
   return pickRandom(pool.length ? pool : arr);
 }
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+// в”Ђв”Ђв”Ђ Types в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
 type Stage = "task1" | "task2" | "feedback";
 
 interface TaskFeedback {
@@ -284,7 +284,7 @@ interface TaskFeedback {
   band9Sample: string;
 }
 
-// ─── Utility ──────────────────────────────────────────────────────────────────
+// в”Ђв”Ђв”Ђ Utility в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
 function pickRandom<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -308,7 +308,7 @@ function bandColor(band: string): string {
   return "text-red-400";
 }
 
-// ─── ChartDataBox ─────────────────────────────────────────────────────────────
+// в”Ђв”Ђв”Ђ ChartDataBox в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
 function ChartDataBox({ chartData, type }: { chartData: string; type: string }) {
   const isProcess = type === "Process Diagram";
   const isTable = type === "Table";
@@ -318,8 +318,8 @@ function ChartDataBox({ chartData, type }: { chartData: string; type: string }) 
   if (isProcess) {
     const allSteps: string[] = [];
     entries.forEach((entry) => {
-      const cleaned = entry.replace(/^🔄\s?/u, "");
-      cleaned.split("→").forEach((step) => {
+      const cleaned = entry.replace(/^рџ”„\s?/u, "");
+      cleaned.split("в†’").forEach((step) => {
         const s = step.trim();
         if (s) allSteps.push(s);
       });
@@ -352,7 +352,7 @@ function ChartDataBox({ chartData, type }: { chartData: string; type: string }) 
       </div>
       <div className="space-y-1.5">
         {entries.map((entry, i) => {
-          const cleaned = entry.replace(/^[📊📈🥧📋]\s?/u, "");
+          const cleaned = entry.replace(/^[рџ“Љрџ“€рџҐ§рџ“‹]\s?/u, "");
           return (
             <div
               key={i}
@@ -371,7 +371,7 @@ function ChartDataBox({ chartData, type }: { chartData: string; type: string }) 
   );
 }
 
-// ─── ScoreBadge ───────────────────────────────────────────────────────────────
+// в”Ђв”Ђв”Ђ ScoreBadge в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
 function ScoreBadge({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col items-center bg-zinc-800/60 border border-zinc-700/50 rounded-xl p-3 min-w-[72px]">
@@ -381,7 +381,7 @@ function ScoreBadge({ label, value }: { label: string; value: string }) {
   );
 }
 
-// ─── CorrectionCard ───────────────────────────────────────────────────────────
+// в”Ђв”Ђв”Ђ CorrectionCard в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
 function CorrectionCard({ corr, index }: { corr: { original: string; corrected: string; explanation: string }; index: number }) {
   return (
     <div className="bg-zinc-800/50 border border-zinc-700/40 rounded-xl p-4 text-sm space-y-2">
@@ -390,19 +390,19 @@ function CorrectionCard({ corr, index }: { corr: { original: string; corrected: 
         <div className="flex-1 space-y-2">
           <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-2">
             <span className="text-red-400 text-[10px] font-bold uppercase tracking-wider block mb-1">
-              ⚠️ Original
+              вљ пёЏ Original
             </span>
             <p className="italic text-zinc-300">"{corr.original}"</p>
           </div>
           <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-2">
             <span className="text-green-400 text-[10px] font-bold uppercase tracking-wider block mb-1">
-              ✅ Corrected
+              вњ… Corrected
             </span>
             <p className="font-medium text-zinc-100">"{corr.corrected}"</p>
           </div>
           <div className="bg-zinc-700/30 rounded-lg p-2">
             <span className="text-zinc-400 text-[10px] font-bold uppercase tracking-wider block mb-1">
-              💡 Explanation
+              рџ’Ў Explanation
             </span>
             <p className="text-zinc-300">{corr.explanation}</p>
           </div>
@@ -412,7 +412,7 @@ function CorrectionCard({ corr, index }: { corr: { original: string; corrected: 
   );
 }
 
-// ─── FeedbackCard ─────────────────────────────────────────────────────────────
+// в”Ђв”Ђв”Ђ FeedbackCard в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
 function FeedbackCard({
   title,
   taskNum,
@@ -443,13 +443,13 @@ function FeedbackCard({
           <div>
             <div className="font-bold text-zinc-100">{title}</div>
             <div className="text-xs text-zinc-400 mt-0.5">
-              Task {taskNum} — {taskNum === 1 ? "150 words min" : "250 words min"}
+              Task {taskNum} вЂ” {taskNum === 1 ? "150 words min" : "250 words min"}
             </div>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <div className={`text-2xl font-bold ${bandColor(feedback.score)}`}>{feedback.score}</div>
-          <span className="text-zinc-500 text-lg">{expanded ? "▲" : "▼"}</span>
+          <span className="text-zinc-500 text-lg">{expanded ? "в–І" : "в–ј"}</span>
         </div>
       </div>
 
@@ -477,7 +477,7 @@ function FeedbackCard({
             <ul className="space-y-2">
               {feedback.improvements.map((imp, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-zinc-300">
-                  <span className="text-amber-400 font-bold mt-0.5">→</span>
+                  <span className="text-amber-400 font-bold mt-0.5">в†’</span>
                   <span>{imp}</span>
                 </li>
               ))}
@@ -500,7 +500,7 @@ function FeedbackCard({
           {feedback.band9Sample && (
             <div>
               <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-3">
-                ⭐ Band 9.0 Model Answer
+                в­ђ Band 9.0 Model Answer
               </h4>
               <div className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-5 text-sm leading-loose text-zinc-200 whitespace-pre-wrap font-serif">
                 {feedback.band9Sample}
@@ -513,7 +513,7 @@ function FeedbackCard({
   );
 }
 
-// ─── Main Page Component ──────────────────────────────────────────────────────
+// в”Ђв”Ђв”Ђ Main Page Component в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
 export default function WritingTest() {
   const [currentLang] = usePracticeLanguage();
   const { track } = useTrack();
@@ -543,7 +543,7 @@ export default function WritingTest() {
 
 
   useEffect(() => {
-    // Ingliz tilida tarjima kerak emas — bunda promptlar hosila qiymat sifatida
+    // Ingliz tilida tarjima kerak emas вЂ” bunda promptlar hosila qiymat sifatida
     // pastda hisoblanadi, effekt umuman ishga tushmaydi.
     if (currentLang === "english") return;
 
@@ -752,7 +752,7 @@ export default function WritingTest() {
   if (isClient && !writingSkillInfo.official && !unofficialAcknowledged) {
     return (
       <div className="min-h-screen bg-[#09090b] text-[#f4f4f5] flex flex-col items-center justify-center p-6 text-center">
-        <div className="text-6xl mb-4">✍️</div>
+        <div className="text-6xl mb-4">вњЌпёЏ</div>
         <h1 className="text-2xl font-black mb-2">{track.title} imtihonida rasmiy Writing bo'limi yo'q</h1>
         <p className="text-zinc-400 max-w-md mb-8 text-sm leading-relaxed">{writingSkillInfo.note}</p>
         <div className="flex gap-3">
@@ -787,7 +787,7 @@ export default function WritingTest() {
               href={`/t/${track.id}`}
               className="text-zinc-400 hover:text-zinc-100 transition-colors text-sm shrink-0"
             >
-              ← Back
+              в†ђ Back
             </Link>
             <span className="hidden sm:block font-semibold text-sm text-zinc-300">
               {`${track.shortTitle} Writing`}
@@ -818,10 +818,10 @@ export default function WritingTest() {
                   : "bg-zinc-800 text-zinc-500"
               }`}
             >
-              {stage !== "task1" && <span>✓</span>}
+              {stage !== "task1" && <span>вњ“</span>}
               Task 1
             </div>
-            <span className="text-zinc-700 text-xs">›</span>
+            <span className="text-zinc-700 text-xs">вЂє</span>
             <div
               className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${
                 stage === "task2"
@@ -831,10 +831,10 @@ export default function WritingTest() {
                   : "bg-zinc-800 text-zinc-600"
               }`}
             >
-              {stage === "feedback" && <span>✓</span>}
+              {stage === "feedback" && <span>вњ“</span>}
               Task 2
             </div>
-            <span className="text-zinc-700 text-xs">›</span>
+            <span className="text-zinc-700 text-xs">вЂє</span>
             <div
               className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${
                 stage === "feedback"
@@ -865,7 +865,7 @@ export default function WritingTest() {
                 }`}
                 title={timeLeft > 600 ? "Vaqtni yashirish/ko'rsatish" : "Vaqt tugamoqda!"}
               >
-                {isTimerHidden && timeLeft > 600 ? "⏰ Vaqt" : formatTime(timeLeft)}
+                {isTimerHidden && timeLeft > 600 ? "вЏ° Vaqt" : formatTime(timeLeft)}
               </div>
             )}
 
@@ -875,7 +875,7 @@ export default function WritingTest() {
                 disabled={task1Words < 10}
                 className="bg-blue-600 hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
               >
-                Task 2 →
+                Task 2 в†’
               </button>
             )}
 
@@ -888,10 +888,10 @@ export default function WritingTest() {
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
                     <span className="w-3.5 h-3.5 border-2 border-zinc-900/30 border-t-zinc-900 rounded-full animate-spin inline-block" />
-                    Evaluating…
+                    EvaluatingвЂ¦
                   </span>
                 ) : (
-                  "Submit & Grade ✓"
+                  "Submit & Grade вњ“"
                 )}
               </button>
             )}
@@ -904,7 +904,7 @@ export default function WritingTest() {
         isResizing ? "cursor-col-resize select-none" : ""
       }`}>
 
-        {/* ── TASK 1 ───────────────────────────────────────────────────────────── */}
+        {/* в”Ђв”Ђ TASK 1 в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
         {stage === "task1" && (
           <div className="flex flex-col lg:flex-row gap-0 items-stretch border border-zinc-800 rounded-2xl overflow-hidden min-h-[calc(100vh-140px)]">
             {/* Left panel */}
@@ -933,11 +933,11 @@ export default function WritingTest() {
               <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
                 <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Task 1 Strategy</h3>
                 <ul className="space-y-1 text-xs text-zinc-400">
-                  <li className="flex gap-2"><span className="text-amber-500">•</span> Write an overview summarising the overall trends</li>
-                  <li className="flex gap-2"><span className="text-amber-500">•</span> Select key data — don't describe every single figure</li>
-                  <li className="flex gap-2"><span className="text-amber-500">•</span> Make clear comparisons with specific numbers</li>
-                  <li className="flex gap-2"><span className="text-amber-500">•</span> Do NOT include personal opinions</li>
-                  <li className="flex gap-2"><span className="text-amber-500">•</span> Target 160–190 words for a safe score</li>
+                  <li className="flex gap-2"><span className="text-amber-500">вЂў</span> Write an overview summarising the overall trends</li>
+                  <li className="flex gap-2"><span className="text-amber-500">вЂў</span> Select key data вЂ” don't describe every single figure</li>
+                  <li className="flex gap-2"><span className="text-amber-500">вЂў</span> Make clear comparisons with specific numbers</li>
+                  <li className="flex gap-2"><span className="text-amber-500">вЂў</span> Do NOT include personal opinions</li>
+                  <li className="flex gap-2"><span className="text-amber-500">вЂў</span> Target 160вЂ“190 words for a safe score</li>
                 </ul>
               </div>
             </div>
@@ -954,7 +954,7 @@ export default function WritingTest() {
               style={{ width: isClient && typeof window !== 'undefined' && window.innerWidth >= 1024 ? `${100 - leftWidth}%` : '100%' }}
             >
               <div className="bg-zinc-800/80 border-b border-zinc-700 px-5 py-3 flex items-center justify-between shrink-0">
-                <span className="text-sm font-semibold text-zinc-300">Your Response — Task 1</span>
+                <span className="text-sm font-semibold text-zinc-300">Your Response вЂ” Task 1</span>
                 <div className="flex items-center gap-2.5">
                   <span className={`text-sm font-bold tabular-nums ${task1Words >= 150 ? "text-green-400" : task1Words >= 100 ? "text-amber-400" : "text-zinc-400"}`}>
                     {task1Words} words
@@ -962,7 +962,7 @@ export default function WritingTest() {
                   <span className="text-xs text-zinc-650">/ 150 min</span>
                   {task1Words >= 150 && (
                     <span className="text-green-400 text-xs font-bold bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-full">
-                      ✓ Ready
+                      вњ“ Ready
                     </span>
                   )}
                 </div>
@@ -971,7 +971,7 @@ export default function WritingTest() {
               <textarea
                 value={task1Text}
                 onChange={(e) => setTask1Text(e.target.value)}
-                placeholder="Begin your Task 1 response here. Start with an overview of the main trends, then describe and compare the key data…"
+                placeholder="Begin your Task 1 response here. Start with an overview of the main trends, then describe and compare the key dataвЂ¦"
                 className="flex-1 w-full p-5 bg-transparent resize-none focus:outline-none text-zinc-100 text-base leading-relaxed placeholder:text-zinc-600"
                 spellCheck={false}
                 autoFocus
@@ -990,7 +990,7 @@ export default function WritingTest() {
           </div>
         )}
 
-        {/* ── TASK 2 ───────────────────────────────────────────────────────────── */}
+        {/* в”Ђв”Ђ TASK 2 в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
         {stage === "task2" && (
           <div className="flex flex-col lg:flex-row gap-0 items-stretch border border-zinc-800 rounded-2xl overflow-hidden min-h-[calc(100vh-140px)]">
             {/* Left panel */}
@@ -1020,12 +1020,12 @@ export default function WritingTest() {
               {/* Task 1 completed pill */}
               <div className="bg-zinc-900 border border-green-500/20 rounded-2xl p-4 flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-green-500/15 flex items-center justify-center text-green-400 font-bold shrink-0">
-                  ✓
+                  вњ“
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-zinc-300">Task 1 Submitted</div>
                   <div className="text-xs text-zinc-500">
-                    {task1Words} words · {task1Prompt.title} ({task1Prompt.type})
+                    {task1Words} words В· {task1Prompt.title} ({task1Prompt.type})
                   </div>
                 </div>
               </div>
@@ -1033,11 +1033,11 @@ export default function WritingTest() {
               <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
                 <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Task 2 Strategy</h3>
                 <ul className="space-y-1 text-xs text-zinc-400">
-                  <li className="flex gap-2"><span className="text-amber-500">•</span> 4-paragraph structure: Intro → Body 1 → Body 2 → Conclusion</li>
-                  <li className="flex gap-2"><span className="text-amber-500">•</span> Paraphrase the question in your introduction</li>
-                  <li className="flex gap-2"><span className="text-amber-500">•</span> State and support your position clearly</li>
-                  <li className="flex gap-2"><span className="text-amber-500">•</span> Use discourse markers (Furthermore, However, In conclusion…)</li>
-                  <li className="flex gap-2"><span className="text-amber-500">•</span> Target 270–300 words for a safe score</li>
+                  <li className="flex gap-2"><span className="text-amber-500">вЂў</span> 4-paragraph structure: Intro в†’ Body 1 в†’ Body 2 в†’ Conclusion</li>
+                  <li className="flex gap-2"><span className="text-amber-500">вЂў</span> Paraphrase the question in your introduction</li>
+                  <li className="flex gap-2"><span className="text-amber-500">вЂў</span> State and support your position clearly</li>
+                  <li className="flex gap-2"><span className="text-amber-500">вЂў</span> Use discourse markers (Furthermore, However, In conclusionвЂ¦)</li>
+                  <li className="flex gap-2"><span className="text-amber-500">вЂў</span> Target 270вЂ“300 words for a safe score</li>
                 </ul>
               </div>
             </div>
@@ -1054,7 +1054,7 @@ export default function WritingTest() {
               style={{ width: isClient && typeof window !== 'undefined' && window.innerWidth >= 1024 ? `${100 - leftWidth}%` : '100%' }}
             >
               <div className="bg-zinc-800/80 border-b border-zinc-700 px-5 py-3 flex items-center justify-between shrink-0">
-                <span className="text-sm font-semibold text-zinc-300">Your Essay — Task 2</span>
+                <span className="text-sm font-semibold text-zinc-300">Your Essay вЂ” Task 2</span>
                 <div className="flex items-center gap-2.5">
                   <span className={`text-sm font-bold tabular-nums ${task2Words >= 250 ? "text-green-400" : task2Words >= 180 ? "text-amber-400" : "text-zinc-400"}`}>
                     {task2Words} words
@@ -1062,7 +1062,7 @@ export default function WritingTest() {
                   <span className="text-xs text-zinc-650">/ 250 min</span>
                   {task2Words >= 250 && (
                     <span className="text-green-400 text-xs font-bold bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-full">
-                      ✓ Ready
+                      вњ“ Ready
                     </span>
                   )}
                 </div>
@@ -1071,7 +1071,7 @@ export default function WritingTest() {
               <textarea
                 value={task2Text}
                 onChange={(e) => setTask2Text(e.target.value)}
-                placeholder="Write your essay here. Begin with a clear introduction that paraphrases the topic and states your position…"
+                placeholder="Write your essay here. Begin with a clear introduction that paraphrases the topic and states your positionвЂ¦"
                 className="flex-1 w-full p-5 bg-transparent resize-none focus:outline-none text-zinc-100 text-base leading-relaxed placeholder:text-zinc-600"
                 spellCheck={false}
                 autoFocus
@@ -1089,7 +1089,7 @@ export default function WritingTest() {
           </div>
         )}
 
-        {/* ── FEEDBACK ─────────────────────────────────────────────────────────── */}
+        {/* в”Ђв”Ђ FEEDBACK в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
         {stage === "feedback" && (
           <div className="max-w-4xl mx-auto space-y-6">
             {/* Loading spinner */}
@@ -1100,9 +1100,9 @@ export default function WritingTest() {
                   <div className="absolute inset-0 rounded-full border-4 border-t-amber-400 animate-spin" />
                 </div>
                 <div className="text-center">
-                  <p className="text-zinc-200 font-semibold text-lg">Evaluating your writing…</p>
+                  <p className="text-zinc-200 font-semibold text-lg">Evaluating your writingвЂ¦</p>
                   <p className="text-zinc-500 text-sm mt-1">
-                    Scoring Task 1 and Task 2 simultaneously. This may take 15–30 seconds.
+                    Scoring Task 1 and Task 2 simultaneously. This may take 15вЂ“30 seconds.
                   </p>
                 </div>
               </div>
@@ -1111,7 +1111,7 @@ export default function WritingTest() {
             {/* Error */}
             {evaluationError && !isSubmitting && (
               <div className="bg-red-500/10 border border-red-500/30 rounded-2xl p-8 text-center space-y-4">
-                <div className="text-4xl">⚠️</div>
+                <div className="text-4xl">вљ пёЏ</div>
                 <p className="text-red-400 font-bold text-lg">Evaluation Failed</p>
                 <p className="text-zinc-400 text-sm max-w-md mx-auto">{evaluationError}</p>
                 <button
@@ -1121,7 +1121,7 @@ export default function WritingTest() {
                   }}
                   className="mt-2 bg-zinc-700 hover:bg-zinc-600 text-zinc-100 px-6 py-2.5 rounded-xl text-sm font-semibold transition-colors"
                 >
-                  ← Go Back and Retry
+                  в†ђ Go Back and Retry
                 </button>
               </div>
             )}
@@ -1254,7 +1254,7 @@ export default function WritingTest() {
                     <div className={`text-4xl font-black ${bandColor(task2Feedback.score)}`}>
                       {task2Feedback.score}
                     </div>
-                    <div className="text-xs text-zinc-400 line-clamp-1">{task2Prompt.prompt.slice(0, 60)}…</div>
+                    <div className="text-xs text-zinc-400 line-clamp-1">{task2Prompt.prompt.slice(0, 60)}вЂ¦</div>
                     <div className="text-xs text-zinc-600">{task2Words} words written</div>
                     <div className="flex gap-2 mt-1 flex-wrap">
                       {[
@@ -1274,14 +1274,14 @@ export default function WritingTest() {
 
                 {/* Detailed feedback */}
                 <FeedbackCard
-                  title={`Task 1 — ${task1Prompt.title}`}
+                  title={`Task 1 вЂ” ${task1Prompt.title}`}
                   taskNum={1}
                   feedback={task1Feedback}
                   expanded={expandedCard === 1}
                   onToggle={() => setExpandedCard(expandedCard === 1 ? null : 1)}
                 />
                 <FeedbackCard
-                  title={`Task 2 — ${task2Prompt.type}`}
+                  title={`Task 2 вЂ” ${task2Prompt.type}`}
                   taskNum={2}
                   feedback={task2Feedback}
                   expanded={expandedCard === 2}
@@ -1294,13 +1294,13 @@ export default function WritingTest() {
                     href={`/t/${track.id}`}
                     className="flex-1 text-center bg-zinc-800 hover:bg-zinc-700 text-zinc-200 px-5 py-3 rounded-xl text-sm font-semibold transition-colors"
                   >
-                    ← Back to Dashboard
+                    в†ђ Back to Dashboard
                   </Link>
                   <button
                     onClick={() => window.location.reload()}
                     className="flex-1 bg-amber-500 hover:bg-amber-400 text-zinc-900 px-5 py-3 rounded-xl text-sm font-bold transition-colors"
                   >
-                    🔄 New Writing Test
+                    рџ”„ New Writing Test
                   </button>
                 </div>
               </>
@@ -1311,3 +1311,4 @@ export default function WritingTest() {
     </div>
   );
 }
+

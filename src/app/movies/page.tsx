@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -9,32 +9,32 @@ const MOVIES = [
     id: "inception",
     title: "Inception (Trailer)",
     level: "B2 Upper-Intermediate",
-    category: "Sci-Fi · Triller",
-    image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2025&auto=format&fit=crop",
+    category: "Sci-Fi В· Triller",
+    image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=100&w=2025&auto=format&fit=crop",
     duration: "2:28"
   },
   {
     id: "interstellar",
     title: "Interstellar",
     level: "C1 Advanced",
-    category: "Sci-Fi · Drama",
-    image: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=2070&auto=format&fit=crop",
+    category: "Sci-Fi В· Drama",
+    image: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=100&w=2070&auto=format&fit=crop",
     duration: "2:15"
   },
   {
     id: "jobs",
     title: "Steve Jobs Speech",
     level: "B1 Intermediate",
-    category: "Motivation · Speech",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
+    category: "Motivation В· Speech",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=100&w=2070&auto=format&fit=crop",
     duration: "14:30"
   },
   {
     id: "friends",
     title: "Friends (Kulgili sahna)",
     level: "A2 Pre-Intermediate",
-    category: "Sitcom · Comedy",
-    image: "https://images.unsplash.com/photo-1529156069898-49953eb1f5bc?q=80&w=2070&auto=format&fit=crop",
+    category: "Sitcom В· Comedy",
+    image: "https://images.unsplash.com/photo-1529156069898-49953eb1f5bc?q=100&w=2070&auto=format&fit=crop",
     duration: "3:45"
   }
 ];
@@ -81,7 +81,7 @@ export default function MoviesCatalogPage() {
           {MOVIES.map(movie => (
             <Link href={`/movies/${movie.id}`} key={movie.id} className="group flex flex-col bg-white dark:bg-zinc-950 rounded-3xl border border-zinc-200 dark:border-zinc-900 overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
               <div className="relative aspect-video overflow-hidden bg-zinc-800">
-                <img src={movie.image} alt={movie.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src={movie.image} loading="lazy" alt={movie.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center shadow-lg transform scale-50 group-hover:scale-100 transition-transform">
                     <Play className="w-5 h-5 text-black ml-1" fill="black" />
@@ -110,3 +110,4 @@ export default function MoviesCatalogPage() {
     </div>
   );
 }
+

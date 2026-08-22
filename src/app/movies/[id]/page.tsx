@@ -1,10 +1,12 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ArrowLeft, Play, BookmarkPlus, Check, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const MOCK_DICT: Record<string, { trans: string, ex: string }> = { ecosystem: { trans: "Ekotizim", ex: "The global ecosystem is changing." }, improve: { trans: "Yaxshilamoq", ex: "Read books to improve your English." }, simultaneously: { trans: "Bir vaqtning o'zida", ex: "He laughed and cried simultaneously." }, encounter: { trans: "Duch kelmoq", ex: "We encountered a problem." }, unfamiliar: { trans: "Notanish", ex: "I saw an unfamiliar face." }, automatically: { trans: "Avtomatik tarzda", ex: "The door opens automatically." }, personal: { trans: "Shaxsiy", ex: "This is my personal computer." }, dictionary: { trans: "Lug'at", ex: "I use a dictionary to learn words." } };
 
 const SAMPLE_SUBTITLES = [
   { id: 1, text: "Welcome to the global ecosystem of language learning.", time: "0:01 - 0:04" },
@@ -39,12 +41,12 @@ export default function MoviePlayerPage() {
           </Link>
           <div>
             <h1 className="font-bold text-lg leading-tight">Inception (Trailer)</h1>
-            <p className="text-xs text-zinc-500">B2 Upper-Intermediate · Sci-Fi</p>
+            <p className="text-xs text-zinc-500">B2 Upper-Intermediate В· Sci-Fi</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <button onClick={() => setShowUzbek(!showUzbek)} className="text-xs font-bold px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-            {showUzbek ? "🇺🇿 UZ / 🇬🇧 EN" : "🇬🇧 EN Faqat"}
+            {showUzbek ? "рџ‡єрџ‡ї UZ / рџ‡¬рџ‡§ EN" : "рџ‡¬рџ‡§ EN Faqat"}
           </button>
           <ThemeToggle />
         </div>
@@ -56,8 +58,8 @@ export default function MoviePlayerPage() {
           <div className="w-full aspect-video bg-black rounded-3xl overflow-hidden relative shadow-2xl flex items-center justify-center border border-zinc-800 group">
             {/* Real YouTube Video (Trailer) */}
             <iframe 
-              className="w-full h-full pointer-events-none" 
-              src="https://www.youtube.com/embed/8hP9D6kZseM?autoplay=1&mute=1&controls=0&modestbranding=1" 
+              className="w-full h-full " 
+              src="https://www.youtube.com/embed/8hP9D6kZseM?autoplay=1&mute=1&controls=1&vq=hd1080&modestbranding=1" 
               title="YouTube video player" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen
@@ -128,9 +130,9 @@ export default function MoviePlayerPage() {
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-2xl font-black capitalize text-amber-500">{selectedWord}</h3>
-                    <p className="text-zinc-500 text-sm italic">[vəʊˈkæbjʊlərɪ] - noun</p>
+                    <p className="text-zinc-500 text-sm italic">[vЙ™КЉЛ€kГ¦bjКЉlЙ™rЙЄ] - noun</p>
                   </div>
-                  <button onClick={() => setSelectedWord(null)} className="w-8 h-8 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 rounded-full text-zinc-500 hover:text-black dark:hover:text-white transition-colors">✕</button>
+                  <button onClick={() => setSelectedWord(null)} className="w-8 h-8 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 rounded-full text-zinc-500 hover:text-black dark:hover:text-white transition-colors">вњ•</button>
                 </div>
                 <div className="mb-6">
                   <p className="font-medium text-lg">Lug'at boyligi, so'zlar zaxirasi</p>
@@ -156,3 +158,6 @@ export default function MoviePlayerPage() {
     </div>
   );
 }
+
+
+
