@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useStoredRawState } from "@/lib/clientStore";
 import { useTargetLevel } from "@/lib/usePrepPlan";
@@ -16,7 +16,7 @@ import { getExamFormat, nativeScoreLabel } from "@/lib/examFormats";
 import { Difficulty, DIFFICULTY_LABELS, DIFFICULTIES } from "@/lib/difficulty";
 
 // Keyed by passage id so it applies whether the passage came from the inline fallback
-// or from Supabase (Supabase rows have no difficulty column — id is the only shared key).
+// or from Supabase (Supabase rows have no difficulty column вЂ” id is the only shared key).
 // Approximate, by topic/vocabulary complexity, not an official rubric.
 const READING_DIFFICULTY: Record<string, Difficulty> = {
   universe: "hard", ai: "medium", tea: "easy",
@@ -34,18 +34,18 @@ function parseExplanation(explanationText: string) {
   
   if (!explanationText) return result;
   
-  const parts = explanationText.split(/(✅|📌|❌|💡)/);
+  const parts = explanationText.split(/(вњ…|рџ“Њ|вќЊ|рџ’Ў)/);
   
   let currentKey: keyof typeof result | null = null;
   for (let i = 0; i < parts.length; i++) {
     const p = parts[i];
-    if (p === "✅") {
+    if (p === "вњ…") {
       currentKey = "correctReason";
-    } else if (p === "📌") {
+    } else if (p === "рџ“Њ") {
       currentKey = "proof";
-    } else if (p === "❌") {
+    } else if (p === "вќЊ") {
       currentKey = "userReason";
-    } else if (p === "💡") {
+    } else if (p === "рџ’Ў") {
       currentKey = "tip";
     } else if (currentKey && p.trim()) {
       const cleaned = p.replace(/^[\s:-]+/, "").trim();
@@ -109,7 +109,7 @@ const PASSAGES: Record<string, {
     title: "The Origins of the Universe",
     paragraphs: [
       { label: "A", text: "Humanity's attempts to explain the origin of the cosmos date back to ancient mythologies, yet it was not until the twentieth century that the question became a matter of rigorous scientific inquiry. For decades, most physicists, including Albert Einstein, assumed the universe was static and eternal, a view so entrenched that Einstein introduced a term called the cosmological constant into his equations of general relativity purely to counteract the gravitational pull that would otherwise cause a static universe to collapse. This assumption was overturned in 1929, when the American astronomer Edwin Hubble, studying the light from distant galaxies, discovered that virtually all of them displayed a redshift in their spectra proportional to their distance from Earth. This meant that galaxies were receding from us, and the farther away they were, the faster they were moving, providing the first observational evidence that the universe itself was expanding." },
-      { label: "B", text: "If space itself was expanding, then logically it must have been far smaller, denser, and hotter in the distant past. This insight, first proposed mathematically by the Belgian priest and physicist Georges Lemaître in 1931, who described a 'primeval atom' from which all matter emerged, formed the theoretical basis of what became known as the Big Bang model. According to this framework, roughly 13.8 billion years ago, the observable universe originated from an extraordinarily hot and dense state and has been expanding and cooling ever since. Within the first few minutes, this cooling permitted protons and neutrons to fuse into the nuclei of light elements such as hydrogen and helium, a process known as Big Bang nucleosynthesis. Hundreds of millions of years later, gravity drew these primordial gas clouds together into the first stars, which eventually assembled into the galaxies that populate the universe today." },
+      { label: "B", text: "If space itself was expanding, then logically it must have been far smaller, denser, and hotter in the distant past. This insight, first proposed mathematically by the Belgian priest and physicist Georges LemaГ®tre in 1931, who described a 'primeval atom' from which all matter emerged, formed the theoretical basis of what became known as the Big Bang model. According to this framework, roughly 13.8 billion years ago, the observable universe originated from an extraordinarily hot and dense state and has been expanding and cooling ever since. Within the first few minutes, this cooling permitted protons and neutrons to fuse into the nuclei of light elements such as hydrogen and helium, a process known as Big Bang nucleosynthesis. Hundreds of millions of years later, gravity drew these primordial gas clouds together into the first stars, which eventually assembled into the galaxies that populate the universe today." },
       { label: "C", text: "The Big Bang model did not go unchallenged. In 1948, the astronomers Hermann Bondi, Thomas Gold, and Fred Hoyle proposed a rival explanation known as the Steady State theory. Rooted in what they termed the 'perfect cosmological principle,' this model held that the universe has no beginning and no end; as galaxies drift apart from one another, new matter is spontaneously and continuously created in the gaps to form fresh stars and galaxies, so that the overall density and appearance of the universe remain constant through infinite time. Ironically, it was Hoyle himself, dismissive of his rivals' theory during a 1949 radio broadcast, who coined the term 'Big Bang,' intending it as a derisive label. For more than a decade, the scientific community remained genuinely divided between these two competing pictures of cosmic history, with observational evidence too sparse to definitively favour either." },
       { label: "D", text: "The dispute was finally resolved in 1964, when two radio astronomers at Bell Labs, Arno Penzias and Robert Wilson, detected a faint, uniform microwave hiss coming from every direction of the sky. Initially suspecting a fault in their antenna, they eventually ruled out interference from local sources before realising that the signal was, in fact, cosmic in origin. This radiation, now called the Cosmic Microwave Background (CMB), was quickly identified by physicists at Princeton as the cooled, redshifted afterglow of the hot early universe predicted by the Big Bang model; the Steady State theory had no mechanism to produce it at all. The discovery earned Penzias and Wilson the 1978 Nobel Prize in Physics, and subsequent satellite missions, including COBE and WMAP, mapped the CMB's minute temperature fluctuations with such precision that they effectively settled the debate in the Big Bang model's favour." },
       { label: "E", text: "Confirmation of the Big Bang, however, opened as many questions as it answered. In the 1970s, astronomer Vera Rubin's observations of galaxy rotation speeds suggested that visible matter alone could not account for the gravitational forces holding galaxies together, implying the existence of an invisible substance now called dark matter. Then, in 1998, two independent teams studying distant exploding stars called Type Ia supernovae found that the expansion of the universe was not slowing under gravity, as expected, but accelerating, a discovery attributed to a mysterious force termed dark energy and later honoured with the 2011 Nobel Prize. Together, dark matter and dark energy are now thought to constitute over ninety percent of the universe's total content, yet neither has been directly detected, and the singularity at the very instant of the Big Bang itself remains beyond the reach of current physical theory." }
@@ -129,7 +129,7 @@ const PASSAGES: Record<string, {
       { id: "p1q10", number: "10.", text: "Penzias and Wilson were originally searching for the Cosmic Microwave Background." },
       { id: "p1q11", number: "11.", text: "The 2011 Nobel Prize recognised the discovery that cosmic expansion is accelerating." },
       { id: "p1q12", number: "12.", text: "The COBE and WMAP satellite missions were funded primarily by the European Space Agency." },
-      { id: "p1q13", number: "13.", text: "Georges Lemaître was a scientist who worked at Bell Labs." },
+      { id: "p1q13", number: "13.", text: "Georges LemaГ®tre was a scientist who worked at Bell Labs." },
       { id: "p1q14", number: "14.", text: "Dark matter has been directly detected by modern scientific instruments." }
     ],
     keys: { p1q1: 'A', p1q2: 'B', p1q3: 'C', p1q4: 'D', p1q5: 'E', p1q6: 'C', p1q7: 'FALSE', p1q8: 'TRUE', p1q9: 'FALSE', p1q10: 'FALSE', p1q11: 'TRUE', p1q12: 'NOT GIVEN', p1q13: 'FALSE', p1q14: 'FALSE' },
@@ -146,7 +146,7 @@ const PASSAGES: Record<string, {
       p1q10: 'Penzias and Wilson were searching for the CMB',
       p1q11: '2011 Nobel Prize recognised accelerating expansion',
       p1q12: 'COBE/WMAP funded primarily by the European Space Agency',
-      p1q13: 'Lemaître worked at Bell Labs',
+      p1q13: 'LemaГ®tre worked at Bell Labs',
       p1q14: 'Dark matter has been directly detected'
     }
   },
@@ -246,8 +246,69 @@ const PASSAGES: Record<string, {
 
 // Genuinely native-language exam content (not translated from the English passages above).
 // Real TOPIK reading is entirely multiple-choice (no matching-heading/TF-NG), so this uses
-// the mcqQuestions shape. Currently one passage per non-English format — proof of concept for
+// the mcqQuestions shape. Currently one passage per non-English format вЂ” proof of concept for
 // "har til o'z haqiqiy formatida" content; more to follow in later passes.
+const MULTILEVEL_PASSAGES: typeof PASSAGES = {
+  ml_part1: {
+    id: "ml_part1",
+    title: "Part 1: Matching Signs and Notices",
+    paragraphs: [
+      { label: "A", text: "CAUTION: Floor is slippery when wet." },
+      { label: "B", text: "Please present your boarding pass at the gate." },
+      { label: "C", text: "Out of order. Please use the stairs." },
+      { label: "D", text: "Do not feed the animals." },
+      { label: "E", text: "Staff only. No admittance to unauthorized personnel." }
+    ],
+    matchingQuestions: [
+      { id: "m1q1", number: "1.", text: "You might see this in an airport." },
+      { id: "m1q2", number: "2.", text: "You must not enter this room if you don't work here." },
+      { id: "m1q3", number: "3.", text: "Be careful where you walk." },
+      { id: "m1q4", number: "4.", text: "This machine is currently broken." },
+      { id: "m1q5", number: "5.", text: "You should not give food to these creatures." }
+    ],
+    tfQuestions: [],
+    keys: { m1q1: "B", m1q2: "E", m1q3: "A", m1q4: "C", m1q5: "D" },
+    qQuestions: { m1q1: "Airport sign", m1q2: "Staff only", m1q3: "Slippery floor", m1q4: "Out of order", m1q5: "Do not feed animals" }
+  },
+  ml_part2: {
+    id: "ml_part2",
+    title: "Part 2: Short Texts",
+    paragraphs: [
+      { label: "Text", text: "Dear Residents,\n\nThe water supply will be interrupted on Tuesday between 9:00 AM and 2:00 PM due to essential maintenance work on the main pipes. We apologize for any inconvenience this may cause. Please ensure you have stored enough water for your morning needs.\n\nManagement" }
+    ],
+    matchingQuestions: [],
+    tfQuestions: [
+      { id: "m2q1", number: "6.", text: "The water supply will be cut off for five hours." },
+      { id: "m2q2", number: "7.", text: "The interruption is due to a broken pipe." },
+      { id: "m2q3", number: "8.", text: "Residents should buy bottled water." },
+      { id: "m2q4", number: "9.", text: "The management apologizes for the issue." }
+    ],
+    keys: { m2q1: "TRUE", m2q2: "FALSE", m2q3: "NOT GIVEN", m2q4: "TRUE" },
+    qQuestions: { m2q1: "Duration of water cut", m2q2: "Reason for interruption", m2q3: "Buying bottled water", m2q4: "Apology from management" }
+  },
+  ml_part3: {
+    id: "ml_part3",
+    title: "Part 3: Long Reading Passage",
+    paragraphs: [
+      { label: "A", text: "The history of chocolate dates back thousands of years to the ancient civilizations of Mesoamerica, including the Maya and Aztecs. They consumed chocolate as a bitter, spicy drink, often flavored with chili peppers and vanilla. It was considered a sacred beverage and was even used as currency." },
+      { label: "B", text: "When Spanish explorers brought cacao beans back to Europe in the 16th century, the recipe was modified. Sugar and honey were added to counteract the natural bitterness of the cacao, making it a popular luxury item among the European elite." },
+      { label: "C", text: "The Industrial Revolution in the 19th century transformed chocolate production. In 1828, Coenraad Johannes van Houten invented the cocoa press, which separated cocoa butter from the roasted beans. This innovation led to the creation of solid chocolate bars, making chocolate affordable and accessible to the general public." }
+    ],
+    matchingQuestions: [
+      { id: "m3q1", number: "10.", text: "The period when chocolate became a solid food rather than just a drink." },
+      { id: "m3q2", number: "11.", text: "How chocolate was initially consumed in its earliest known history." },
+      { id: "m3q3", number: "12.", text: "The changes made to chocolate to suit European tastes." }
+    ],
+    tfQuestions: [
+      { id: "m3q4", number: "13.", text: "The Aztecs used chocolate as money." },
+      { id: "m3q5", number: "14.", text: "The cocoa press was invented by a Spanish explorer." }
+    ],
+    keys: { m3q1: "C", m3q2: "A", m3q3: "B", m3q4: "TRUE", m3q5: "FALSE" },
+    qQuestions: { m3q1: "Solid chocolate invention", m3q2: "Earliest consumption", m3q3: "European recipe changes", m3q4: "Chocolate as currency", m3q5: "Cocoa press inventor" }
+  }
+};
+
+
 const NATIVE_PASSAGES: Partial<Record<string, {
   id: string;
   title: string;
@@ -258,23 +319,23 @@ const NATIVE_PASSAGES: Partial<Record<string, {
 }>> = {
   korean: {
     id: "topik_env",
-    title: "환경 보호와 작은 실천 (Environmental Protection and Small Practices)",
+    title: "н™кІЅ ліґнём™Ђ мћ‘мќЂ м‹¤мІњ (Environmental Protection and Small Practices)",
     paragraphs: [
-      { label: "1", text: "한국의 많은 도시에서는 최근 몇 년 동안 일회용품 사용을 줄이기 위한 다양한 정책을 시행하고 있다. 예를 들어, 카페에서는 개인 컵을 가져오는 손님에게 할인을 해 주고, 마트에서는 비닐봉지 대신 종이봉투나 장바구니 사용을 권장한다. 이러한 변화는 처음에는 다소 불편하게 느껴질 수 있지만, 시간이 지나면서 많은 시민들이 자연스럽게 적응하고 있다." },
-      { label: "2", text: "특히 젊은 세대를 중심으로 환경 보호에 대한 관심이 높아지고 있다. 이들은 텀블러나 다회용 빨대를 사용하고, 필요 없는 물건은 중고 거래를 통해 재활용한다. 또한 소셜 미디어를 통해 환경 보호의 중요성을 알리는 캠페인에 적극적으로 참여하기도 한다." },
-      { label: "3", text: "전문가들은 이러한 작은 실천들이 모이면 큰 변화를 만들어 낼 수 있다고 말한다. 정부의 정책만으로는 환경 문제를 완전히 해결하기 어렵기 때문에, 개인의 노력과 사회 전체의 인식 변화가 함께 이루어져야 한다는 것이다. 앞으로도 이러한 움직임이 계속 확산되어 더 많은 사람들이 환경 보호에 동참하기를 기대해 본다." }
+      { label: "1", text: "н•њкµ­мќ л§ЋмќЂ лЏ„м‹њм—ђм„њлЉ” мµњк·ј лЄ‡ л…„ лЏ™м•€ мќјнљЊмљ©н’€ м‚¬мљ©мќ„ м¤„мќґкё° мњ„н•њ л‹¤м–‘н•њ м •м±…мќ„ м‹њн–‰н•кі  мћ€л‹¤. м€лҐј л“¤м–ґ, м№ґнЋм—ђм„њлЉ” к°њмќё м»µмќ„ к°Ђм ём¤лЉ” м†ђл‹м—ђкІЊ н• мќёмќ„ н•ґ мЈјкі , л§€нЉём—ђм„њлЉ” л№„л‹ђлґ‰м§Ђ лЊЂм‹  мў…мќґлґ‰н€¬л‚ мћҐл°”кµ¬л‹€ м‚¬мљ©мќ„ к¶ЊмћҐн•њл‹¤. мќґлџ¬н•њ ліЂн™”лЉ” мІмќЊм—ђлЉ” л‹¤м†Њ л¶€нЋён•кІЊ лЉђк»ґм§€ м€ мћ€м§Ђл§Њ, м‹њк°„мќґ м§Ђл‚л©ґм„њ л§ЋмќЂ м‹њлЇјл“¤мќґ мћђм—°мЉ¤лџЅкІЊ м Ѓмќ‘н•кі  мћ€л‹¤." },
+      { label: "2", text: "нЉ№нћ€ м ЉмќЂ м„ёлЊЂлҐј м¤‘м‹¬мњјлЎњ н™кІЅ ліґнём—ђ лЊЂн•њ кґЂм‹¬мќґ л†’м•„м§Ђкі  мћ€л‹¤. мќґл“¤мќЂ н…Ђлё”лџ¬л‚ л‹¤нљЊмљ© л№ЁлЊЂлҐј м‚¬мљ©н•кі , н•„мљ” м—†лЉ” л¬јк±ґмќЂ м¤‘кі  к±°лћлҐј н†µн•ґ мћ¬н™њмљ©н•њл‹¤. лђн•њ м†Њм…њ лЇёл””м–ґлҐј н†µн•ґ н™кІЅ ліґнёмќ м¤‘мљ”м„±мќ„ м•Њл¦¬лЉ” мє нЋмќём—ђ м Ѓк·№м ЃмњјлЎњ м°ём—¬н•кё°лЏ„ н•њл‹¤." },
+      { label: "3", text: "м „л¬ёк°Ђл“¤мќЂ мќґлџ¬н•њ мћ‘мќЂ м‹¤мІњл“¤мќґ лЄЁмќґл©ґ нЃ° ліЂн™”лҐј л§Њл“¤м–ґ л‚ј м€ мћ€л‹¤кі  л§ђн•њл‹¤. м •л¶Ђмќ м •м±…л§ЊмњјлЎњлЉ” н™кІЅ л¬ём њлҐј м™„м „нћ€ н•ґкІ°н•кё° м–ґл µкё° л•Њл¬ём—ђ, к°њмќёмќ л…ёл Ґкіј м‚¬нљЊ м „мІґмќ мќём‹ќ ліЂн™”к°Ђ н•Ёк» мќґлЈЁм–ґм ём•ј н•њл‹¤лЉ” кІѓмќґл‹¤. м•ћмњјлЎњлЏ„ мќґлџ¬н•њ м›Ђм§Ѓмћ„мќґ кі„м†Ќ н™•м‚°лђм–ґ лЌ” л§ЋмќЂ м‚¬лћЊл“¤мќґ н™кІЅ ліґнём—ђ лЏ™м°ён•кё°лҐј кё°лЊЂн•ґ ліёл‹¤." }
     ],
     mcqQuestions: [
-      { id: "q1", number: "1.", text: "이 글의 중심 내용으로 가장 알맞은 것은?", options: ["정부의 환경 정책은 실패했다", "작은 실천들이 모여 환경 보호에 기여할 수 있다", "젊은 세대는 환경에 관심이 없다", "일회용품 사용은 계속 늘어나고 있다"] },
-      { id: "q2", number: "2.", text: "카페에서 개인 컵을 가져온 손님에게 무엇을 해 주는가?", options: ["무료 음료를 준다", "할인을 해 준다", "텀블러를 선물한다", "포인트를 적립해 준다"] },
-      { id: "q3", number: "3.", text: "젊은 세대가 하고 있는 행동으로 언급되지 않은 것은?", options: ["다회용 빨대 사용", "중고 거래를 통한 재활용", "환경 캠페인 참여", "정부 정책에 반대하는 시위"] },
-      { id: "q4", number: "4.", text: "전문가들의 의견으로 알맞은 것은?", options: ["정부 정책만으로 문제를 해결할 수 있다", "개인의 노력과 사회적 인식 변화가 함께 필요하다", "환경 문제는 해결이 불가능하다", "젊은 세대만 노력하면 충분하다"] },
-      { id: "q5", number: "5.", text: "이 글에서 '일회용품'을 줄이기 위한 대안으로 언급된 것은?", options: ["텀블러, 다회용 빨대, 장바구니", "비닐봉지", "소셜 미디어", "할인 쿠폰"] }
+      { id: "q1", number: "1.", text: "мќґ кёЂмќ м¤‘м‹¬ л‚ґмљ©мњјлЎњ к°ЂмћҐ м•Њл§ћмќЂ кІѓмќЂ?", options: ["м •л¶Ђмќ н™кІЅ м •м±…мќЂ м‹¤нЊЁн–€л‹¤", "мћ‘мќЂ м‹¤мІњл“¤мќґ лЄЁм—¬ н™кІЅ ліґнём—ђ кё°м—¬н•  м€ мћ€л‹¤", "м ЉмќЂ м„ёлЊЂлЉ” н™кІЅм—ђ кґЂм‹¬мќґ м—†л‹¤", "мќјнљЊмљ©н’€ м‚¬мљ©мќЂ кі„м†Ќ лЉм–ґл‚кі  мћ€л‹¤"] },
+      { id: "q2", number: "2.", text: "м№ґнЋм—ђм„њ к°њмќё м»µмќ„ к°Ђм ёмЁ м†ђл‹м—ђкІЊ л¬ґм—‡мќ„ н•ґ мЈјлЉ”к°Ђ?", options: ["л¬ґлЈЊ мќЊлЈЊлҐј м¤Ђл‹¤", "н• мќёмќ„ н•ґ м¤Ђл‹¤", "н…Ђлё”лџ¬лҐј м„ л¬јн•њл‹¤", "нЏ¬мќёнЉёлҐј м Ѓл¦Ѕн•ґ м¤Ђл‹¤"] },
+      { id: "q3", number: "3.", text: "м ЉмќЂ м„ёлЊЂк°Ђ н•кі  мћ€лЉ” н–‰лЏ™мњјлЎњ м–ёкё‰лђм§Ђ м•ЉмќЂ кІѓмќЂ?", options: ["л‹¤нљЊмљ© л№ЁлЊЂ м‚¬мљ©", "м¤‘кі  к±°лћлҐј н†µн•њ мћ¬н™њмљ©", "н™кІЅ мє нЋмќё м°ём—¬", "м •л¶Ђ м •м±…м—ђ л°лЊЂн•лЉ” м‹њмњ„"] },
+      { id: "q4", number: "4.", text: "м „л¬ёк°Ђл“¤мќ мќкІ¬мњјлЎњ м•Њл§ћмќЂ кІѓмќЂ?", options: ["м •л¶Ђ м •м±…л§ЊмњјлЎњ л¬ём њлҐј н•ґкІ°н•  м€ мћ€л‹¤", "к°њмќёмќ л…ёл Ґкіј м‚¬нљЊм Ѓ мќём‹ќ ліЂн™”к°Ђ н•Ёк» н•„мљ”н•л‹¤", "н™кІЅ л¬ём њлЉ” н•ґкІ°мќґ л¶€к°ЂлЉҐн•л‹¤", "м ЉмќЂ м„ёлЊЂл§Њ л…ёл Ґн•л©ґ м¶©л¶„н•л‹¤"] },
+      { id: "q5", number: "5.", text: "мќґ кёЂм—ђм„њ 'мќјнљЊмљ©н’€'мќ„ м¤„мќґкё° мњ„н•њ лЊЂм•€мњјлЎњ м–ёкё‰лђњ кІѓмќЂ?", options: ["н…Ђлё”лџ¬, л‹¤нљЊмљ© л№ЁлЊЂ, мћҐл°”кµ¬л‹€", "л№„л‹ђлґ‰м§Ђ", "м†Њм…њ лЇёл””м–ґ", "н• мќё мї нЏ°"] }
     ],
     keys: { q1: 'B', q2: 'B', q3: 'D', q4: 'B', q5: 'A' },
     qQuestions: {
-      q1: '중심 내용 파악', q2: '세부 내용 - 카페 할인', q3: '언급되지 않은 것 찾기',
-      q4: '전문가 의견 파악', q5: '일회용품 대안 파악'
+      q1: 'м¤‘м‹¬ л‚ґмљ© нЊЊм•…', q2: 'м„ёл¶Ђ л‚ґмљ© - м№ґнЋ н• мќё', q3: 'м–ёкё‰лђм§Ђ м•ЉмќЂ кІѓ м°ѕкё°',
+      q4: 'м „л¬ёк°Ђ мќкІ¬ нЊЊм•…', q5: 'мќјнљЊмљ©н’€ лЊЂм•€ нЊЊм•…'
     }
   }
 };
@@ -310,7 +371,7 @@ function getAllQQuestions() {
 }
 
 export default function ReadingTest() {
-  const [activePassageTab, setActivePassageTab] = useState("universe");
+  const [activePassageTab, setActivePassageTab] = useState(track.id === "multilevel" ? "ml_part1" : "universe");
   const passageId = activePassageTab; // keep for compat
   const [timeLeft, setTimeLeft] = useState(60 * 60); // 60 minutes
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -319,7 +380,7 @@ export default function ReadingTest() {
   const [highlightResetKey, setHighlightResetKey] = useState(0);
   const [showVocab, setShowVocab] = useState(false);
   const [testHistory, setTestHistory] = useState<Record<string, TestRecord>>({});
-  // Tema localStorage'dan to'g'ridan-to'g'ri o'qiladi — ilgari effekt ichida
+  // Tema localStorage'dan to'g'ridan-to'g'ri o'qiladi вЂ” ilgari effekt ichida
   // setState qilinardi va birinchi kadr har doim qorong'i chiqib, keyin sakrardi.
   const [theme, setTheme] = useStoredRawState("ielts_theme", "dark") as ["dark" | "light", (v: string) => void];
   const display = useDisplaySettings();
@@ -393,7 +454,7 @@ export default function ReadingTest() {
   }, []);
 
   // Content is loaded from Supabase; the inline constants act as an offline fallback.
-  const [passages, setPassages] = useState<typeof PASSAGES>(PASSAGES);
+  const [passages, setPassages] = useState<typeof PASSAGES>(track.id === "multilevel" ? MULTILEVEL_PASSAGES : PASSAGES);
   const [vocabLists, setVocabLists] = useState<typeof VOCABULARY_LISTS>(VOCABULARY_LISTS);
 
   const [currentLang] = usePracticeLanguage();
@@ -403,7 +464,7 @@ export default function ReadingTest() {
   const isClient = useHydrated();
   const targetLevel = useTargetLevel();
   // Faqat AI tarjimasi state'da saqlanadi. Ingliz tilidagi asl matn va qo'lda
-  // yozilgan milliy matnlar — hosila qiymatlar: ularni effektda setState qilish
+  // yozilgan milliy matnlar вЂ” hosila qiymatlar: ularni effektda setState qilish
   // ortiqcha kadr chizib, matn "sakrab" chiqishiga sabab bo'lardi.
   const [translatedPassage, setTranslatedPassage] = useState<any>(null);
   const [translating, setTranslating] = useState(false);
@@ -473,7 +534,7 @@ export default function ReadingTest() {
   };
 
   useEffect(() => {
-    // Tarixni serverdan/keshdan qayta o'qish — tashqi manba bilan sinxronlash,
+    // Tarixni serverdan/keshdan qayta o'qish вЂ” tashqi manba bilan sinxronlash,
     // effektning aynan mo'ljallangan vazifasi.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     loadHistory();
@@ -516,7 +577,7 @@ export default function ReadingTest() {
   }, []);
 
   // Matn almashganda test holatini tozalash.
-  // React'ning tavsiya etgan usuli — buni effektda emas, render vaqtida qilish:
+  // React'ning tavsiya etgan usuli вЂ” buni effektda emas, render vaqtida qilish:
   // effekt bo'lsa, avval eski javoblar bilan bitta ortiqcha kadr chiziladi.
   const [prevPassageId, setPrevPassageId] = useState(passageId);
   if (passageId !== prevPassageId) {
@@ -554,7 +615,7 @@ export default function ReadingTest() {
     setScore(null);
     try {
       if (currentLang === "english") {
-        // Client-side scoring for English — all 42 questions, use IELTS band table
+        // Client-side scoring for English вЂ” all 42 questions, use IELTS band table
         const allKeys = getAllKeys();
         const allQQ = getAllQQuestions();
         let correct = 0;
@@ -563,7 +624,7 @@ export default function ReadingTest() {
         Object.entries(allKeys).forEach(([qId, key]) => {
           const userAns = (answers[qId] || "").trim().toUpperCase();
           if (userAns === key) correct++;
-          explanations[qId] = `✅ Correct answer: ${key}. 📌 Refer to the relevant passage paragraph. 💡 Review the passage carefully for this question type.`;
+          explanations[qId] = `вњ… Correct answer: ${key}. рџ“Њ Refer to the relevant passage paragraph. рџ’Ў Review the passage carefully for this question type.`;
         });
         const band = getIeltsBand(correct);
         const result = { correct, total, band, explanations, allKeys, allQQ };
@@ -741,7 +802,7 @@ export default function ReadingTest() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-4">
             <Link href={`/t/${track.id}`} className="text-zinc-500 hover:text-[#f4f4f5] transition-colors font-semibold text-sm">
-              ← Exit Test
+              в†ђ Exit Test
             </Link>
             <div className="h-6 w-px bg-zinc-900"></div>
             
@@ -765,7 +826,7 @@ export default function ReadingTest() {
                   </button>
                 ))}
                 <span className={`text-[10px] font-mono ml-2 ${theme === 'dark' ? 'text-zinc-500' : 'text-zinc-400'}`}>
-                  42 questions · 60 min
+                  42 questions В· 60 min
                 </span>
               </div>
             )}
@@ -782,7 +843,7 @@ export default function ReadingTest() {
                   : 'bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-black'
               }`}
             >
-              {theme === 'dark' ? "☀️ Light" : "🌙 Dark"}
+              {theme === 'dark' ? "вЂпёЏ Light" : "рџЊ™ Dark"}
             </button>
             <button 
               onClick={() => setShowVocab(true)}
@@ -790,7 +851,7 @@ export default function ReadingTest() {
                 theme === 'dark' ? 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-white' : 'bg-white border-zinc-200 text-zinc-700 hover:bg-zinc-50'
               }`}
             >
-              📖 Lug'atlar (Vocab)
+              рџ“– Lug'atlar (Vocab)
             </button>
             <div 
               onClick={() => {
@@ -809,7 +870,7 @@ export default function ReadingTest() {
               }`}
               title={timeLeft > 600 ? "Vaqtni yashirish/ko'rsatish" : "Vaqt tugamoqda!"}
             >
-              {isTimerHidden && timeLeft > 600 ? "⏰ Vaqt" : formatTime(timeLeft)}
+              {isTimerHidden && timeLeft > 600 ? "вЏ° Vaqt" : formatTime(timeLeft)}
             </div>
              {/* Zoom Controls */}
              <div className="flex items-center gap-2 ml-4">
@@ -817,7 +878,7 @@ export default function ReadingTest() {
                  onClick={() => display.changeFontScale(-0.1)}
                  disabled={display.fontScale <= MIN_SCALE}
                  className={`px-2 py-1 rounded ${theme === 'dark' ? 'bg-zinc-900 text-zinc-300' : 'bg-zinc-100 text-zinc-700'} disabled:opacity-40`}
-               >A−</button>
+               >Aв€’</button>
                <span className="w-12 text-center font-mono text-sm">{Math.round(display.fontScale * 100)}%</span>
                <button
                  onClick={() => display.changeFontScale(0.1)}
@@ -865,14 +926,14 @@ export default function ReadingTest() {
                 className="bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 text-xs font-bold px-3 py-1.5 rounded-lg border border-amber-500/20 transition-colors"
                 title="Highlight selected text"
               >
-                🎨 Highlight
+                рџЋЁ Highlight
               </button>
               <button 
                 onClick={applyNoteSelection}
                 className="bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 text-xs font-bold px-3 py-1.5 rounded-lg border border-sky-500/20 transition-colors"
                 title="Add note to selected text"
               >
-                📝 Add Note
+                рџ“ќ Add Note
               </button>
               <button 
                 onClick={clearHighlights}
@@ -881,7 +942,7 @@ export default function ReadingTest() {
                 }`}
                 title="Clear all highlights"
               >
-                🗑️ Clear
+                рџ—‘пёЏ Clear
               </button>
             </div>
           </div>
@@ -954,7 +1015,7 @@ export default function ReadingTest() {
                         {nativePsg.mcqQuestions.map((q: any) => (
                           <div key={q.id} id={`q_wrapper_${q.id}`} className="flex flex-col gap-2 group">
                             <div className="flex items-center gap-2">
-                              <button type="button" onClick={() => toggleFlag(q.id)} className={`text-xs p-1 rounded hover:bg-zinc-800 transition-colors ${flags[q.id] ? "text-blue-500" : "text-zinc-500 opacity-30 group-hover:opacity-100"}`} title="Review later">🚩</button>
+                              <button type="button" onClick={() => toggleFlag(q.id)} className={`text-xs p-1 rounded hover:bg-zinc-800 transition-colors ${flags[q.id] ? "text-blue-500" : "text-zinc-500 opacity-30 group-hover:opacity-100"}`} title="Review later">рџљ©</button>
                               <span className="font-semibold text-sm w-6 text-zinc-500">{q.number}</span>
                               <span style={qTextStyle} className={`text-sm font-semibold ${readerActive ? '' : theme === 'dark' ? 'text-zinc-300' : 'text-zinc-700'}`}>{q.text}</span>
                             </div>
@@ -993,7 +1054,7 @@ export default function ReadingTest() {
                       <span className={`text-xs font-semibold ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-600'}`}>{psg.title}</span>
                       <button onClick={() => { setActivePassageTab(psg.id); document.querySelector('#passage-content')?.scrollTo({ top: 0 }); }}
                         className="ml-auto text-[10px] font-bold text-amber-500 hover:text-amber-400 uppercase tracking-wider">
-                        → Matnni ko'rish
+                        в†’ Matnni ko'rish
                       </button>
                     </div>
 
@@ -1001,12 +1062,12 @@ export default function ReadingTest() {
                     <div style={cardStyle} className={`border p-5 rounded-xl ${
                       readerActive ? 'border-black/10' : theme === 'dark' ? 'bg-zinc-950 border-zinc-900' : 'bg-white border-zinc-200 shadow-sm'
                     }`}>
-                      <h3 className="font-bold text-sm mb-1">Questions {psg.matchingQuestions[0].number.replace('.','')}-{psg.matchingQuestions[psg.matchingQuestions.length-1].number.replace('.','')} — Matching Information</h3>
+                      <h3 className="font-bold text-sm mb-1">Questions {psg.matchingQuestions[0].number.replace('.','')}-{psg.matchingQuestions[psg.matchingQuestions.length-1].number.replace('.','')} вЂ” Matching Information</h3>
                       <p className="text-xs text-zinc-500 mb-4 italic">Which paragraph (A-E) contains the following information? Write the correct letter.</p>
                       <div className="space-y-3">
                         {psg.matchingQuestions.map((q: any) => (
                           <div key={q.id} id={`q_wrapper_${q.id}`} className="flex items-center gap-3 group">
-                            <button type="button" onClick={() => toggleFlag(q.id)} className={`text-xs p-1 rounded hover:bg-zinc-800 transition-colors ${flags[q.id] ? "text-blue-500" : "text-zinc-500 opacity-30 group-hover:opacity-100"}`} title="Review later">🚩</button>
+                            <button type="button" onClick={() => toggleFlag(q.id)} className={`text-xs p-1 rounded hover:bg-zinc-800 transition-colors ${flags[q.id] ? "text-blue-500" : "text-zinc-500 opacity-30 group-hover:opacity-100"}`} title="Review later">рџљ©</button>
                             <span className="font-semibold text-xs w-8 text-zinc-500 shrink-0">{q.number}</span>
                             <input type="text" maxLength={1} value={answers[q.id] || ""} onChange={(e) => handleInputChange(q.id, e.target.value.toUpperCase())}
                               className={`w-10 h-9 border rounded-lg text-center font-bold uppercase focus:ring-1 focus:ring-amber-500 outline-none text-sm shrink-0 ${
@@ -1023,12 +1084,12 @@ export default function ReadingTest() {
                     <div style={cardStyle} className={`border p-5 rounded-xl ${
                       readerActive ? 'border-black/10' : theme === 'dark' ? 'bg-zinc-950 border-zinc-900' : 'bg-white border-zinc-200 shadow-sm'
                     }`}>
-                      <h3 className="font-bold text-sm mb-1">Questions {psg.tfQuestions[0].number.replace('.','')}-{psg.tfQuestions[psg.tfQuestions.length-1].number.replace('.','')} — True / False / Not Given</h3>
+                      <h3 className="font-bold text-sm mb-1">Questions {psg.tfQuestions[0].number.replace('.','')}-{psg.tfQuestions[psg.tfQuestions.length-1].number.replace('.','')} вЂ” True / False / Not Given</h3>
                       <p className="text-xs text-zinc-500 mb-4 italic">Do the following statements agree with the information in the Reading Passage?</p>
                       <div className="space-y-3">
                         {psg.tfQuestions.map((q: any) => (
                           <div key={q.id} id={`q_wrapper_${q.id}`} className="flex items-start gap-3 group">
-                            <button type="button" onClick={() => toggleFlag(q.id)} className={`text-xs p-1 mt-1 rounded hover:bg-zinc-800 transition-colors ${flags[q.id] ? "text-blue-500" : "text-zinc-500 opacity-30 group-hover:opacity-100"}`} title="Review later">🚩</button>
+                            <button type="button" onClick={() => toggleFlag(q.id)} className={`text-xs p-1 mt-1 rounded hover:bg-zinc-800 transition-colors ${flags[q.id] ? "text-blue-500" : "text-zinc-500 opacity-30 group-hover:opacity-100"}`} title="Review later">рџљ©</button>
                             <span className="font-semibold text-xs w-8 mt-2 text-zinc-500 shrink-0">{q.number}</span>
                             <div className="flex gap-1 shrink-0">
                               {["TRUE","FALSE","NOT GIVEN"].map(opt => (
@@ -1069,7 +1130,7 @@ export default function ReadingTest() {
                   <h3 className="text-center uppercase tracking-widest text-xs font-bold text-zinc-500 mb-2">
                     IELTS Academic Reading
                   </h3>
-                  <p className="text-center text-[10px] text-zinc-600 mb-6">3 Passages · 42 Questions · Official Band Scale</p>
+                  <p className="text-center text-[10px] text-zinc-600 mb-6">3 Passages В· 42 Questions В· Official Band Scale</p>
 
                   <div className={`flex justify-between items-center mb-8 pb-8 border-b ${theme === 'dark' ? 'border-zinc-900' : 'border-zinc-200'}`}>
                     <div className="text-center">
@@ -1124,7 +1185,7 @@ export default function ReadingTest() {
                                     <div className={`p-3.5 rounded-xl border flex gap-3 items-start transition-all ${
                                       theme === 'dark' ? 'bg-emerald-950/15 border-emerald-900/40 text-emerald-300' : 'bg-emerald-50/50 border-emerald-200 text-emerald-800'
                                     }`}>
-                                      <span className="text-base shrink-0 mt-0.5 select-none">✅</span>
+                                      <span className="text-base shrink-0 mt-0.5 select-none">вњ…</span>
                                       <div className="space-y-1">
                                         <strong className="text-[9px] uppercase font-bold tracking-wider opacity-60 block">Tahlil va Sababi (Analysis)</strong>
                                         <p className="leading-relaxed text-zinc-300 dark:text-zinc-250 font-medium">{parsed.correctReason}</p>
@@ -1136,7 +1197,7 @@ export default function ReadingTest() {
                                     <div className={`p-3.5 rounded-xl border flex gap-3 items-start transition-all ${
                                       theme === 'dark' ? 'bg-cyan-950/15 border-cyan-900/40 text-cyan-300' : 'bg-cyan-50/50 border-cyan-200 text-cyan-800'
                                     }`}>
-                                      <span className="text-base shrink-0 mt-0.5 select-none">📌</span>
+                                      <span className="text-base shrink-0 mt-0.5 select-none">рџ“Њ</span>
                                       <div className="space-y-1 w-full">
                                         <strong className="text-[9px] uppercase font-bold tracking-wider opacity-60 block">Matndan Isbot (Evidence Quote)</strong>
                                         <p className="leading-relaxed font-serif italic text-zinc-100 dark:text-zinc-200 bg-zinc-950/30 dark:bg-black/20 p-2 rounded-lg border border-zinc-900/10 mt-1">
@@ -1150,7 +1211,7 @@ export default function ReadingTest() {
                                     <div className={`p-3.5 rounded-xl border flex gap-3 items-start transition-all ${
                                       theme === 'dark' ? 'bg-amber-950/15 border-amber-900/40 text-amber-300' : 'bg-amber-50/50 border-amber-200 text-amber-800'
                                     }`}>
-                                      <span className="text-base shrink-0 mt-0.5 select-none">❌</span>
+                                      <span className="text-base shrink-0 mt-0.5 select-none">вќЊ</span>
                                       <div className="space-y-1">
                                         <strong className="text-[9px] uppercase font-bold tracking-wider opacity-60 block">Xatolik Izohi (Distractor Check)</strong>
                                         <p className="leading-relaxed text-zinc-300 dark:text-zinc-250">{parsed.userReason}</p>
@@ -1162,7 +1223,7 @@ export default function ReadingTest() {
                                     <div className={`p-3.5 rounded-xl border flex gap-3 items-start transition-all ${
                                       theme === 'dark' ? 'bg-purple-950/15 border-purple-900/40 text-purple-300' : 'bg-purple-50/50 border-purple-200 text-purple-800'
                                     }`}>
-                                      <span className="text-base shrink-0 mt-0.5 select-none">💡</span>
+                                      <span className="text-base shrink-0 mt-0.5 select-none">рџ’Ў</span>
                                       <div className="space-y-1">
                                         <strong className="text-[9px] uppercase font-bold tracking-wider opacity-60 block">Tutor Strategiyasi (Tips)</strong>
                                         <p className="leading-relaxed text-zinc-300 dark:text-zinc-250 font-medium">{parsed.tip}</p>
@@ -1220,7 +1281,7 @@ export default function ReadingTest() {
                   title={flagged ? "Review" : answered ? "Answered" : "Unanswered"}
                 >
                   {idx + 1}
-                  {flagged && <span className="absolute -top-1 -right-1 text-[7px]">🚩</span>}
+                  {flagged && <span className="absolute -top-1 -right-1 text-[7px]">рџљ©</span>}
                 </button>
               );
             })}
@@ -1246,7 +1307,7 @@ export default function ReadingTest() {
             }}
             className="px-2.5 py-1 text-[10px] font-extrabold uppercase bg-amber-500 text-black hover:bg-amber-400 rounded-lg transition-colors"
           >
-            🎨 Highlight
+            рџЋЁ Highlight
           </button>
           <button
             onClick={() => {
@@ -1255,7 +1316,7 @@ export default function ReadingTest() {
             }}
             className="px-2.5 py-1 text-[10px] font-extrabold uppercase bg-sky-500 text-white hover:bg-sky-400 rounded-lg transition-colors"
           >
-            📝 Add Note
+            рџ“ќ Add Note
           </button>
           <button
             onClick={() => {
@@ -1279,7 +1340,7 @@ export default function ReadingTest() {
               [ Close ]
             </button>
             <h3 className="text-xl font-black mb-2 text-zinc-100 flex items-center gap-2">
-              <span>📖</span> Vocabulary List / Lug'at boyligi
+              <span>рџ“–</span> Vocabulary List / Lug'at boyligi
             </h3>
             <p className="text-xs text-zinc-500 mb-6 font-mono">Passage: "{currentPassage.title}" mavzusiga oid asosiy akademik so'zlar.</p>
 
@@ -1317,3 +1378,6 @@ export default function ReadingTest() {
     </div>
   );
 }
+
+
+
