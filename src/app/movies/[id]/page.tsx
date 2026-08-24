@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -7,6 +7,40 @@ import { ArrowLeft, Play, BookmarkPlus, Check, MessageSquare } from "lucide-reac
 import { motion, AnimatePresence } from "framer-motion";
 
 const MOCK_DICT: Record<string, { trans: string, ex: string }> = { ecosystem: { trans: "Ekotizim", ex: "The global ecosystem is changing." }, improve: { trans: "Yaxshilamoq", ex: "Read books to improve your English." }, simultaneously: { trans: "Bir vaqtning o'zida", ex: "He laughed and cried simultaneously." }, encounter: { trans: "Duch kelmoq", ex: "We encountered a problem." }, unfamiliar: { trans: "Notanish", ex: "I saw an unfamiliar face." }, automatically: { trans: "Avtomatik tarzda", ex: "The door opens automatically." }, personal: { trans: "Shaxsiy", ex: "This is my personal computer." }, dictionary: { trans: "Lug'at", ex: "I use a dictionary to learn words." } };
+
+const MOCK_DICT: Record<string, { trans: string, ex: string }> = {
+  welcome: { trans: "Xush kelibsiz", ex: "Welcome to our platform!" },
+  global: { trans: "Global, umumjahon", ex: "This is a global issue." },
+  ecosystem: { trans: "Ekotizim", ex: "The global ecosystem is changing." },
+  language: { trans: "Til", ex: "English is a global language." },
+  learning: { trans: "O'rganish", ex: "Learning is a lifelong process." },
+  here: { trans: "Bu yerda", ex: "Here is your book." },
+  you: { trans: "Siz", ex: "You are welcome." },
+  can: { trans: "Qila olmoq", ex: "You can do it!" },
+  watch: { trans: "Tomosha qilmoq", ex: "I watch movies every day." },
+  movies: { trans: "Kinolar", ex: "I love watching movies." },
+  and: { trans: "Va", ex: "You and I." },
+  improve: { trans: "Yaxshilamoq", ex: "Read books to improve your English." },
+  your: { trans: "Sizning", ex: "This is your book." },
+  vocabulary: { trans: "Lug'at boyligi", ex: "Expand your vocabulary." },
+  simultaneously: { trans: "Bir vaqtning o'zida", ex: "He laughed and cried simultaneously." },
+  if: { trans: "Agar", ex: "If it rains, we will stay home." },
+  encounter: { trans: "Duch kelmoq", ex: "We encountered a problem." },
+  an: { trans: "Bir", ex: "It is an apple." },
+  unfamiliar: { trans: "Notanish", ex: "I saw an unfamiliar face." },
+  word: { trans: "So'z", ex: "What does this word mean?" },
+  simply: { trans: "Shunchaki", ex: "Simply click the button." },
+  click: { trans: "Bosmoq", ex: "Click on the link." },
+  on: { trans: "Ustida", ex: "The book is on the table." },
+  it: { trans: "U", ex: "It is a cat." },
+  will: { trans: "Xohish, -ajak", ex: "It will rain." },
+  be: { trans: "Bo'lmoq", ex: "I will be there." },
+  automatically: { trans: "Avtomatik tarzda", ex: "The door opens automatically." },
+  saved: { trans: "Saqlangan", ex: "Your work is saved." },
+  to: { trans: "-ga", ex: "Go to school." },
+  personal: { trans: "Shaxsiy", ex: "This is my personal computer." },
+  dictionary: { trans: "Lug'at", ex: "I use a dictionary to learn words." }
+};
 
 const SAMPLE_SUBTITLES = [
   { id: 1, text: "Welcome to the global ecosystem of language learning.", time: "0:01 - 0:04" },
@@ -41,12 +75,12 @@ export default function MoviePlayerPage() {
           </Link>
           <div>
             <h1 className="font-bold text-lg leading-tight">Inception (Trailer)</h1>
-            <p className="text-xs text-zinc-500">B2 Upper-Intermediate В· Sci-Fi</p>
+            <p className="text-xs text-zinc-500">B2 Upper-Intermediate Р’В· Sci-Fi</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <button onClick={() => setShowUzbek(!showUzbek)} className="text-xs font-bold px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-            {showUzbek ? "рџ‡єрџ‡ї UZ / рџ‡¬рџ‡§ EN" : "рџ‡¬рџ‡§ EN Faqat"}
+            {showUzbek ? "СЂСџвЂЎС”СЂСџвЂЎС— UZ / СЂСџвЂЎВ¬СЂСџвЂЎВ§ EN" : "СЂСџвЂЎВ¬СЂСџвЂЎВ§ EN Faqat"}
           </button>
           <ThemeToggle />
         </div>
@@ -69,7 +103,7 @@ export default function MoviePlayerPage() {
             <div className="absolute bottom-8 w-full text-center px-4">
               <div className="inline-block bg-black/60 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/10">
                 <p className="text-2xl font-bold text-white drop-shadow-md">
-                  {SAMPLE_SUBTITLES[1].text.split(" ").map((word, i) => (
+                  {(SAMPLE_SUBTITLES.find(s => s.id === activeSubId)?.text || "").split(" ").map((word, i) => (
                     <span 
                       key={i} 
                       onClick={() => handleWordClick(word)}
@@ -130,13 +164,13 @@ export default function MoviePlayerPage() {
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-2xl font-black capitalize text-amber-500">{selectedWord}</h3>
-                    <p className="text-zinc-500 text-sm italic">[vЙ™КЉЛ€kГ¦bjКЉlЙ™rЙЄ] - noun</p>
+                    <p className="text-zinc-500 text-sm italic">[vəˈkæbjʊlərɪ] - noun</p>
                   </div>
-                  <button onClick={() => setSelectedWord(null)} className="w-8 h-8 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 rounded-full text-zinc-500 hover:text-black dark:hover:text-white transition-colors">вњ•</button>
+                  <button onClick={() => setSelectedWord(null)} className="w-8 h-8 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 rounded-full text-zinc-500 hover:text-black dark:hover:text-white transition-colors">✕</button>
                 </div>
                 <div className="mb-6">
-                  <p className="font-medium text-lg">Lug'at boyligi, so'zlar zaxirasi</p>
-                  <p className="text-sm text-zinc-500 mt-2">Misol: Reading books is a good way to expand your <span className="font-bold text-zinc-700 dark:text-zinc-300">vocabulary</span>.</p>
+                  <p className="font-medium text-lg text-emerald-500">{MOCK_DICT[selectedWord]?.trans || "Tarjima topilmadi"}</p>
+                  <p className="text-sm text-zinc-500 mt-2">Misol: {MOCK_DICT[selectedWord]?.ex || "Bu so'z uchun misol yo'q."}</p>
                 </div>
                 <button 
                   onClick={saveWord}
@@ -158,6 +192,7 @@ export default function MoviePlayerPage() {
     </div>
   );
 }
+
 
 
 
