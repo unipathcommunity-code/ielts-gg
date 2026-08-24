@@ -1,12 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ArrowLeft, Play, BookmarkPlus, Check, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const MOCK_DICT: Record<string, { trans: string, ex: string }> = { ecosystem: { trans: "Ekotizim", ex: "The global ecosystem is changing." }, improve: { trans: "Yaxshilamoq", ex: "Read books to improve your English." }, simultaneously: { trans: "Bir vaqtning o'zida", ex: "He laughed and cried simultaneously." }, encounter: { trans: "Duch kelmoq", ex: "We encountered a problem." }, unfamiliar: { trans: "Notanish", ex: "I saw an unfamiliar face." }, automatically: { trans: "Avtomatik tarzda", ex: "The door opens automatically." }, personal: { trans: "Shaxsiy", ex: "This is my personal computer." }, dictionary: { trans: "Lug'at", ex: "I use a dictionary to learn words." } };
 
 const MOCK_DICT: Record<string, { trans: string, ex: string }> = {
   welcome: { trans: "Xush kelibsiz", ex: "Welcome to our platform!" },
@@ -75,12 +73,12 @@ export default function MoviePlayerPage() {
           </Link>
           <div>
             <h1 className="font-bold text-lg leading-tight">Inception (Trailer)</h1>
-            <p className="text-xs text-zinc-500">B2 Upper-Intermediate Р’В· Sci-Fi</p>
+            <p className="text-xs text-zinc-500">B2 Upper-Intermediate Р вЂ™Р’В· Sci-Fi</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <button onClick={() => setShowUzbek(!showUzbek)} className="text-xs font-bold px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-            {showUzbek ? "СЂСџвЂЎС”СЂСџвЂЎС— UZ / СЂСџвЂЎВ¬СЂСџвЂЎВ§ EN" : "СЂСџвЂЎВ¬СЂСџвЂЎВ§ EN Faqat"}
+            {showUzbek ? "РЎР‚РЎСџРІР‚РЋРЎвЂќРЎР‚РЎСџРІР‚РЋРЎвЂ” UZ / РЎР‚РЎСџРІР‚РЋР’В¬РЎР‚РЎСџРІР‚РЋР’В§ EN" : "РЎР‚РЎСџРІР‚РЋР’В¬РЎР‚РЎСџРІР‚РЋР’В§ EN Faqat"}
           </button>
           <ThemeToggle />
         </div>
@@ -164,9 +162,9 @@ export default function MoviePlayerPage() {
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-2xl font-black capitalize text-amber-500">{selectedWord}</h3>
-                    <p className="text-zinc-500 text-sm italic">[vəˈkæbjʊlərɪ] - noun</p>
+                    <p className="text-zinc-500 text-sm italic">[vЙ™Л€kГ¦bjКЉlЙ™rЙЄ] - noun</p>
                   </div>
-                  <button onClick={() => setSelectedWord(null)} className="w-8 h-8 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 rounded-full text-zinc-500 hover:text-black dark:hover:text-white transition-colors">✕</button>
+                  <button onClick={() => setSelectedWord(null)} className="w-8 h-8 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 rounded-full text-zinc-500 hover:text-black dark:hover:text-white transition-colors">вњ•</button>
                 </div>
                 <div className="mb-6">
                   <p className="font-medium text-lg text-emerald-500">{MOCK_DICT[selectedWord]?.trans || "Tarjima topilmadi"}</p>
@@ -192,6 +190,7 @@ export default function MoviePlayerPage() {
     </div>
   );
 }
+
 
 
 
