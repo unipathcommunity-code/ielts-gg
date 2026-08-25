@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useStoredRawState } from "@/lib/clientStore";
 import { useTargetLevel } from "@/lib/usePrepPlan";
@@ -1133,9 +1133,9 @@ export default function ReadingTest() {
                   theme === 'dark' ? 'bg-zinc-950 border-zinc-900 text-white' : 'bg-white border-zinc-200 text-zinc-900 shadow-lg'
                 }`}>
                   <h3 className="text-center uppercase tracking-widest text-xs font-bold text-zinc-500 mb-2">
-                    IELTS Academic Reading
+                    {track.shortTitle} Reading
                   </h3>
-                  <p className="text-center text-[10px] text-zinc-600 mb-6">3 Passages В· 42 Questions В· Official Band Scale</p>
+                  <p className="text-center text-[10px] text-zinc-600 mb-6">{score.total} Questions · {track.scoreLabel}</p>
 
                   <div className={`flex justify-between items-center mb-8 pb-8 border-b ${theme === 'dark' ? 'border-zinc-900' : 'border-zinc-200'}`}>
                     <div className="text-center">
@@ -1144,9 +1144,10 @@ export default function ReadingTest() {
                     </div>
                     <div className="h-12 w-px bg-zinc-900"></div>
                     <div className="text-center">
-                      <div className="text-xs text-zinc-500 font-medium mb-1">IELTS Band Score</div>
-                      <div className="text-5xl font-black text-amber-500 font-mono">{score.band}</div>
-                      <div className="text-[10px] text-zinc-500 font-mono mt-1">out of 9.0</div>
+                      <div className="text-xs text-zinc-500 font-medium mb-1">{track.scoreLabel}</div>
+                      <div className="text-5xl font-black text-amber-500 font-mono">{trackScore(track, parseFloat(score.band) || 0)}</div>
+                      {track.scoring === "band-9" && <div className="text-[10px] text-zinc-500 font-mono mt-1">out of 9.0</div>}
+                      {track.scoring === "points-75" && <div className="text-[10px] text-zinc-500 font-mono mt-1">/ 75</div>}
                     </div>
                   </div>
 

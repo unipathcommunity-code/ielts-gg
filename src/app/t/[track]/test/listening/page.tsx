@@ -470,7 +470,7 @@ export default function ListeningTest() {
                 >
                   {Object.values(tests).map((t) => (
                     <option key={t.id} value={t.id}>
-                      {DIFFICULTY_LABELS[LISTENING_DIFFICULTY[t.id] || "medium"]} — {t.title} {testHistory[t.id] ? `(Band ${testHistory[t.id].band})` : ""}
+                      {DIFFICULTY_LABELS[LISTENING_DIFFICULTY[t.id] || "medium"]} — {t.title} {testHistory[t.id] ? `(${track.scoreLabel} ${trackScore(track, testHistory[t.id].band)})` : ""}
                     </option>
                   ))}
                 </select>

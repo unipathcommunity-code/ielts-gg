@@ -259,7 +259,7 @@ const renderPandaMascot = (stage: string) => {
   );
 };
 
-const renderExaminer = (status: "speaking" | "listening" | "idle" | "thinking") => {
+const renderExaminer = (status: "speaking" | "listening" | "idle" | "thinking", trackShortTitle = "IELTS") => {
   return (
     <div className="w-48 sm:w-56 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 text-left shadow-2xl flex flex-col items-center p-3 sm:p-4">
       <div className={`relative w-36 h-36 sm:w-40 sm:h-40 rounded-xl overflow-hidden mb-3 border-2 transition-all duration-300 ${
@@ -270,7 +270,7 @@ const renderExaminer = (status: "speaking" | "listening" | "idle" | "thinking") 
       }`}>
         <img
           src="/examiner.jpg"
-          alt="IELTS Examiner"
+          alt={`${trackShortTitle} Speaking Examiner`}
           className="w-full h-full object-cover filter contrast-105"
         />
         <div className="absolute bottom-2 left-2 right-2 flex justify-center">
@@ -289,7 +289,7 @@ const renderExaminer = (status: "speaking" | "listening" | "idle" | "thinking") 
       </div>
       <div className="text-center w-full">
         <h4 className="font-bold text-xs sm:text-sm text-zinc-200">Mr. Arthur Pendelton</h4>
-        <p className="text-[9px] sm:text-[10px] text-zinc-500 font-medium">Senior IELTS Examiner (UK)</p>
+        <p className="text-[9px] sm:text-[10px] text-zinc-500 font-medium">Senior {trackShortTitle} Examiner (UK)</p>
         <p className="text-[8px] sm:text-[9px] font-mono text-amber-500 font-bold mt-1 uppercase tracking-widest">ID: 849-GB-74</p>
       </div>
     </div>
@@ -546,7 +546,7 @@ export default function SpeakingTest() {
   // Prefetch static test audios
   useEffect(() => {
     if (selectedTopic) {
-      const introText = `Good morning. My name is Alex, and I'll be your IELTS examiner today. First, could you tell me your full name please? ... Thank you. Now, I'd like to ask you some questions about ${selectedTopic.name}.`;
+      const introText = `Good morning. My name is Alex, and I'll be your ${track.shortTitle} speaking examiner today. First, could you tell me your full name please? ... Thank you. Now, I'd like to ask you some questions about ${selectedTopic.name}.`;
       prefetchAudio(introText);
       selectedTopic.questions.forEach(q => {
         prefetchAudio(q);
@@ -1090,7 +1090,7 @@ export default function SpeakingTest() {
         body: JSON.stringify({
           type: "speaking",
           content: fullTranscript,
-          prompt: `Full IELTS Speaking Test. Part 1: ${selectedTopic.name}. Part 2 Cue Card: ${selectedCue.topic}. Part 3 Discussion: ${selectedCue.part3Topic}.`,
+          prompt: `Full ${track.title} Speaking Test. Part 1: ${selectedTopic.name}. Part 2 Cue Card: ${selectedCue.topic}. Part 3 Discussion: ${selectedCue.part3Topic}.`,
           azurePronunciationMetrics: azureAverages,
           language: currentLang,
           trackId: track.id,
@@ -1127,7 +1127,7 @@ export default function SpeakingTest() {
     setConversation([]);
     setFeedback(null);
 
-    const intro = `Good morning. My name is Alex, and I'll be your IELTS examiner today. First, could you tell me your full name please? ... Thank you. Now, I'd like to ask you some questions about ${selectedTopic.name}.`;
+    const intro = `Good morning. My name is Alex, and I'll be your ${track.shortTitle} speaking examiner today. First, could you tell me your full name please? ... Thank you. Now, I'd like to ask you some questions about ${selectedTopic.name}.`;
     setAiText(intro);
     speak(intro, () => askPart1Question(0));
   };
@@ -1406,7 +1406,7 @@ export default function SpeakingTest() {
             <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">AI Speaking Test Examiner</h1>
             
             <p className={`text-base mb-8 max-w-lg mx-auto leading-relaxed ${c ? "text-zinc-400" : "text-zinc-650"}`}>
-              Haqiqiy IELTS formati bo'yicha tayyorlaning: Part 1 → Part 2 → Part 3. Sun'iy intellekt imtihonchisi sizning ravonlik, lug'at boyligi, grammatika va talaffuzingizni baholaydi.
+              Haqiqiy {track.shortTitle} formati bo&apos;yicha tayyorlaning: Part 1 → Part 2 → Part 3. Sun&apos;iy intellekt imtihonchisi sizning ravonlik, lug&apos;at boyligi, grammatika va talaffuzingizni baholaydi.
             </p>
             
             <div className={`grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left rounded-2xl p-6 border ${card}`}>
@@ -1496,7 +1496,7 @@ export default function SpeakingTest() {
               </div>
             ) : avatarStyle === "examiner" ? (
               <div className="mb-10">
-                {renderExaminer("speaking")}
+                {renderExaminer("speaking", track.shortTitle)}
               </div>
             ) : (
               <div className="mb-10 w-48 h-48 sm:w-56 sm:h-56 rounded-full flex items-center justify-center border border-amber-500/20 bg-zinc-950/60 shadow-lg relative">
@@ -1555,7 +1555,7 @@ export default function SpeakingTest() {
                 <div className="ripple-ring ripple-ring-1 text-rose-500/30"></div>
                 <div className="ripple-ring ripple-ring-2 text-rose-500/20"></div>
                 <div className="ripple-ring ripple-ring-3 text-rose-500/10"></div>
-                {renderExaminer("listening")}
+                {renderExaminer("listening", track.shortTitle)}
               </div>
             ) : (
               <div className="mb-10 w-48 h-48 sm:w-56 sm:h-56 rounded-full flex items-center justify-center border border-rose-500/20 bg-zinc-950/60 shadow-lg relative">
@@ -1649,7 +1649,7 @@ export default function SpeakingTest() {
                 </div>
               ) : avatarStyle === "examiner" ? (
                 <div className="mb-6 flex flex-col items-center justify-center relative">
-                  {renderExaminer("idle")}
+                  {renderExaminer("idle", track.shortTitle)}
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-950/80 rounded-2xl p-4">
                     <span className="text-[10px] uppercase font-mono font-black text-sky-400 mb-1">Prep Time</span>
                     <span className={`text-3xl font-black font-mono tracking-wider ${prepTimeLeft <= 15 ? "text-red-500 animate-pulse" : "text-sky-400"}`}>
@@ -1723,7 +1723,7 @@ export default function SpeakingTest() {
                   <div className="ripple-ring ripple-ring-1 text-rose-500/30"></div>
                   <div className="ripple-ring ripple-ring-2 text-rose-500/20"></div>
                   <div className="ripple-ring ripple-ring-3 text-rose-500/10"></div>
-                  {renderExaminer("listening")}
+                  {renderExaminer("listening", track.shortTitle)}
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-950/80 rounded-2xl p-4">
                     <span className="text-[10px] uppercase font-mono font-black text-rose-400 mb-1">Time Left</span>
                     <span className={`text-3xl font-black font-mono tracking-wider ${speakTimeLeft <= 15 ? "text-red-500 animate-pulse" : "text-rose-400"}`}>
@@ -1778,7 +1778,7 @@ export default function SpeakingTest() {
               </div>
             ) : avatarStyle === "examiner" ? (
               <div className="mb-10">
-                {renderExaminer("thinking")}
+                {renderExaminer("thinking", track.shortTitle)}
               </div>
             ) : (
               <div className="mb-10 w-48 h-48 sm:w-56 sm:h-56 rounded-full flex items-center justify-center border border-sky-500/20 bg-zinc-950/60 shadow-lg relative">
@@ -1790,7 +1790,7 @@ export default function SpeakingTest() {
 
             <h2 className="text-xl font-bold mb-2">Analyzing your performance...</h2>
             <p className={`text-sm max-w-md mx-auto leading-relaxed ${c ? "text-zinc-400" : "text-zinc-600"}`}>
-              AI imtihonchisi barcha 3 ta qism bo'yicha javoblarni va talaffuzingizni IELTS mezonlariga muvofiq tekshirmoqda. Bu 15-30 soniya vaqt olishi mumkin.
+              AI imtihonchisi barcha 3 ta qism bo&apos;yicha javoblarni va talaffuzingizni {track.shortTitle} mezonlariga muvofiq tekshirmoqda. Bu 15-30 soniya vaqt olishi mumkin.
             </p>
           </div>
         )}
@@ -1810,7 +1810,7 @@ export default function SpeakingTest() {
               </div>
             ) : avatarStyle === "examiner" ? (
               <div className="mb-10">
-                {renderExaminer("thinking")}
+                {renderExaminer("thinking", track.shortTitle)}
               </div>
             ) : (
               <div className="mb-10 w-48 h-48 sm:w-56 sm:h-56 rounded-full flex items-center justify-center border border-sky-500/20 bg-zinc-950/60 shadow-lg relative">
@@ -1831,7 +1831,7 @@ export default function SpeakingTest() {
           <div className="w-full animate-in fade-in duration-500 max-w-3xl">
             <div className="text-center mb-8 border-b border-zinc-900/10 dark:border-zinc-800/40 pb-6">
               <div className={`text-xs uppercase tracking-widest font-black mb-3 ${c ? "text-zinc-550" : "text-zinc-400"}`}>
-                Estimated IELTS Band Score
+                {track.scoreLabel}
               </div>
               <div className="text-7xl font-black text-amber-500 mb-2">{feedback.overall}</div>
               <div className={`text-sm ${c ? "text-zinc-400" : "text-zinc-600"} font-medium`}>Parts 1, 2 & 3 baholash natijasi</div>
