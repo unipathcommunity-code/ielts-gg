@@ -36,4 +36,36 @@ export const NATIVE_LISTENING_TESTS: Partial<Record<string, ListeningTest>> = {
       { qid: "q5", kind: "mcq", prompt: "스터디룸에 대한 설명으로 맞는 것은?", options: [{ value: "A", label: "예약 없이 바로 이용 가능하다" }, { value: "B", label: "인터넷으로 미리 예약해야 한다" }, { value: "C", label: "학생증이 없어도 이용 가능하다" }], answer_key: "B" },
     ],
   },
+  german: {
+    id: "goethe_library",
+    title: "Bibliotheksausweis (Library Card)",
+    sentences: [
+      "Guten Tag, wie kann ich Ihnen helfen?",
+      "Guten Tag, ich möchte mich gerne in der Bibliothek anmelden.",
+      "Haben Sie Ihren Personalausweis oder Reisepass dabei?",
+      "Ja, hier ist mein Ausweis.",
+      "Danke. Die Anmeldung kostet zehn Euro im Jahr.",
+      "Gut. Wie viele Bücher kann ich ausleihen?",
+      "Sie können bis zu zehn Bücher gleichzeitig ausleihen. Die Leihfrist beträgt vier Wochen.",
+      "Kann ich die Bücher auch verlängern?",
+      "Ja, Sie können die Frist zweimal um jeweils vier Wochen verlängern, wenn niemand das Buch vorbestellt hat.",
+      "Vielen Dank für die Informationen.",
+    ],
+    transcriptHtml:
+      `<p class="mb-2"><strong class="text-amber-500 font-mono">[Teil 1]</strong> Guten Tag, wie kann ich Ihnen helfen? Guten Tag, ich möchte mich gerne in der Bibliothek anmelden. Haben Sie Ihren <mark class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded font-bold">Personalausweis oder Reisepass</mark> dabei? (Q1) Ja, hier ist mein Ausweis. Danke. Die Anmeldung kostet <mark class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded font-bold">zehn Euro</mark> im Jahr. (Q2)</p>` +
+      `<p><strong class="text-amber-500 font-mono">[Teil 2]</strong> Gut. Wie viele Bücher kann ich ausleihen? Sie können bis zu <mark class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded font-bold">zehn Bücher</mark> gleichzeitig ausleihen. (Q3) Die Leihfrist beträgt vier Wochen. Kann ich die Bücher auch verlängern? Ja, Sie können die Frist <mark class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded font-bold">zweimal um jeweils vier Wochen</mark> verlängern (Q4), wenn niemand das Buch vorbestellt hat. (Q5) Vielen Dank für die Informationen.</p>`,
+    vocab: [
+      { word: "Personalausweis (ID card)", definition: "Ein offizielles Dokument zur Identifikation", translation: "Shaxsni tasdiqlovchi hujjat" },
+      { word: "Leihfrist (Loan period)", definition: "Die Zeit, in der man ein Buch behalten darf", translation: "Ijaraga olish muddati" },
+      { word: "verlängern (to extend)", definition: "Die Zeitspanne größer machen", translation: "Uzaytirmoq" },
+      { word: "vorbestellt (pre-ordered/reserved)", definition: "Wenn jemand anderes das Buch schon reserviert hat", translation: "Oldindan buyurtma qilingan" },
+    ],
+    questions: [
+      { qid: "q1", kind: "mcq", prompt: "Was braucht der Mann für die Anmeldung?", options: [{ value: "A", label: "Einen Führerschein" }, { value: "B", label: "Einen Personalausweis oder Reisepass" }, { value: "C", label: "Seine Geburtsurkunde" }], answer_key: "B" },
+      { qid: "q2", kind: "mcq", prompt: "Wie viel kostet die Anmeldung pro Jahr?", options: [{ value: "A", label: "Fünf Euro" }, { value: "B", label: "Zehn Euro" }, { value: "C", label: "Zwanzig Euro" }], answer_key: "B" },
+      { qid: "q3", kind: "mcq", prompt: "Wie viele Bücher darf man maximal ausleihen?", options: [{ value: "A", label: "Zehn Bücher" }, { value: "B", label: "Fünf Bücher" }, { value: "C", label: "Zwei Bücher" }], answer_key: "A" },
+      { qid: "q4", kind: "mcq", prompt: "Wie oft kann man die Leihfrist verlängern?", options: [{ value: "A", label: "Einmal" }, { value: "B", label: "Zweimal" }, { value: "C", label: "Gar nicht" }], answer_key: "B" },
+      { qid: "q5", kind: "mcq", prompt: "Wann kann man die Leihfrist NICHT verlängern?", options: [{ value: "A", label: "Wenn man die Gebühr nicht bezahlt hat" }, { value: "B", label: "Wenn das Buch zu alt ist" }, { value: "C", label: "Wenn jemand anderes das Buch vorbestellt hat" }], answer_key: "C" },
+    ],
+  },
 };

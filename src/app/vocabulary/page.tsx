@@ -95,6 +95,17 @@ const WORDS_CN: Word[] = [
   { word: "重要 (zhòngyào)", ipa: "[zhong yao]", def: "Important; significant", uz: "muhim", cefr: "HSK 2", example: "健康是最重要的。 - Sog'lik eng muhimidir." },
 ];
 
+const WORDS_DE: Word[] = [
+  { word: "Hallo", ipa: "[ha-lo]", def: "Hello", uz: "Salom", cefr: "A1", example: "Hallo, wie geht es dir? - Salom, qalaysan?" },
+  { word: "Danke", ipa: "[dan-ke]", def: "Thank you", uz: "Rahmat", cefr: "A1", example: "Vielen Dank für Ihre Hilfe. - Yordamingiz uchun katta rahmat." },
+  { word: "Bitte", ipa: "[bi-te]", def: "Please; you're welcome", uz: "Iltimos; arziydi", cefr: "A1", example: "Eine Tasse Kaffee, bitte. - Bir finjon qahva, iltimos." },
+  { word: "verbessern", ipa: "[fer-bes-sern]", def: "To improve", uz: "yaxshilamoq", cefr: "B1", example: "Ich möchte mein Deutsch verbessern. - Men nemis tilimni yaxshilamoqchiman." },
+  { word: "Kommunikation", ipa: "[ko-mu-ni-ka-tsi-on]", def: "Communication", uz: "muloqot", cefr: "B2", example: "Gute Kommunikation ist wichtig. - Yaxshi muloqot muhimdir." },
+  { word: "Ergebnis", ipa: "[er-geb-nis]", def: "Result", uz: "natija", cefr: "B1", example: "Das Ergebnis der Prüfung ist gut. - Imtihon natijasi yaxshi." },
+  { word: "Erfolg", ipa: "[er-folg]", def: "Success", uz: "muvaffaqiyat", cefr: "B1", example: "Ich wünsche dir viel Erfolg. - Senga katta muvaffaqiyat tilayman." },
+  { word: "Wissen", ipa: "[vis-sen]", def: "Knowledge", uz: "bilim", cefr: "B1", example: "Wissen ist Macht. - Bilim bu kuchdir." },
+];
+
 type SRS = { ease: number; interval: number; due: number; reps: number };
 
 // useStoredJSON uchun barqaror fallback identifikatorlari.
@@ -150,6 +161,7 @@ export default function VocabularyPage() {
     if (currentLang === "korean") return WORDS_KR;
     if (currentLang === "russian") return WORDS_RU;
     if (currentLang === "chinese") return WORDS_CN;
+    if (currentLang === "german") return WORDS_DE;
     return WORDS_EN;
   };
   const activeWordList = getActiveWords();

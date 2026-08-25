@@ -133,6 +133,26 @@ const LANGUAGE_SENTENCES: Record<string, SentenceItem[]> = {
         { char: "非常 (Fēicháng)", read: "Feichang", meaning: "Favqulodda / Favqulodda darajada", type: "word" }
       ]
     }
+  ],
+  german: [
+    {
+      text: "Guten Tag, schön Sie kennenzulernen.",
+      translation: "Xayrli kun, siz bilan tanishganimdan xursandman.",
+      breakdowns: [
+        { char: "Guten Tag", read: "[ˈɡuːtn̩ taːk]", meaning: "Xayrli kun / Salom", type: "word" },
+        { char: "schön", read: "[ʃøːn]", meaning: "Chiroyli / Yaxshi", type: "word" },
+        { char: "kennenzulernen", read: "[ˈkɛnənˌtsuːlɛʁnən]", meaning: "Tanishmoq", type: "word" }
+      ]
+    },
+    {
+      text: "Das Wetter ist heute sehr schön.",
+      translation: "Bugun ob-havo juda yaxshi.",
+      breakdowns: [
+        { char: "Wetter", read: "[ˈvɛtɐ]", meaning: "Ob-havo", type: "word" },
+        { char: "heute", read: "[ˈhɔɪ̯tə]", meaning: "Bugun", type: "word" },
+        { char: "sehr", read: "[zeːɐ̯]", meaning: "Juda", type: "word" }
+      ]
+    }
   ]
 };
 
