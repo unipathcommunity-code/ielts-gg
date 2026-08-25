@@ -147,6 +147,13 @@ const TORFL_SECTIONS: TrackSection[] = [
   { skill: "speaking", parts: 4, questions: null, minutes: 25, official: true },
 ];
 
+const GOETHE_SECTIONS: TrackSection[] = [
+  { skill: "listening", parts: 4, questions: 30, minutes: 40, official: true },
+  { skill: "reading", parts: 5, questions: 30, minutes: 65, official: true },
+  { skill: "writing", parts: 2, questions: null, tasks: 2, minutes: 60, official: true },
+  { skill: "speaking", parts: 3, questions: null, minutes: 15, official: true },
+];
+
 // ── Registr ──────────────────────────────────────────────────────────────────
 
 const TRACKS: Track[] = [
@@ -304,6 +311,25 @@ const TRACKS: Track[] = [
     scoreLabel: "TRKI darajasi",
     certificateThreshold: 6.0,
     gradingRubricNote: getExamFormat("russian").gradingRubricNote,
+    freeDailyAiGrades: 1,
+  },
+  {
+    id: "goethe",
+    language: "german",
+    examFormat: "german",
+    kind: "exam",
+    status: "beta",
+    title: "Goethe-Zertifikat",
+    shortTitle: "Goethe",
+    subtitle: "Nemis tili — A1 dan C2 gacha",
+    emoji: "🇩🇪",
+    accent: "rose",
+    sections: GOETHE_SECTIONS,
+    scoring: "cefr",
+    levels: ["A1", "A2", "B1", "B2", "C1", "C2"],
+    scoreLabel: "CEFR darajasi",
+    certificateThreshold: 6.0,
+    gradingRubricNote: getExamFormat("german").gradingRubricNote,
     freeDailyAiGrades: 1,
   },
 ];

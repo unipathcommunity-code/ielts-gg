@@ -22,6 +22,20 @@ export function FlagIcon({ lang, className = "w-4 h-4 rounded-full overflow-hidd
       </span>
     );
   }
+  if (lang === "german") {
+    return (
+      <span className={className}>
+        <svg viewBox="0 0 100 100" className="w-full h-full">
+          <clipPath id={clipId}><circle cx="50" cy="50" r="50"/></clipPath>
+          <g clipPath={`url(#${clipId})`}>
+            <rect y="0" width="100" height="33.3" fill="#000000"/>
+            <rect y="33.3" width="100" height="33.3" fill="#DD0000"/>
+            <rect y="66.6" width="100" height="33.4" fill="#FFCC00"/>
+          </g>
+        </svg>
+      </span>
+    );
+  }
   if (lang === "russian") {
     return (
       <span className={className}>

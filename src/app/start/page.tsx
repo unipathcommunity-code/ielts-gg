@@ -74,6 +74,16 @@ const getSteps = (lang: string, course: string): Step[] => {
         { label: "Bilmayman / Yangi", value: "unknown", emoji: "🤔" },
       ],
     },
+    german: {
+      question: "Hozirgi nemis tili darajangiz qanday?",
+      subtitle: "Bu sizga mos rejani tuzishimizga yordam beradi",
+      options: [
+        { label: "Beginner (A1–A2)", value: "beginner", emoji: "🌱" },
+        { label: "Intermediate (B1–B2)", value: "intermediate", emoji: "📘" },
+        { label: "Advanced (C1–C2)", value: "advanced", emoji: "🚀" },
+        { label: "Bilmayman / Yangi", value: "unknown", emoji: "🤔" },
+      ],
+    },
   }[lang] || {
     question: "Hozirgi til darajangiz qanday?",
     subtitle: "Bu sizga mos rejani tuzishimizga yordam beradi",
@@ -112,6 +122,12 @@ const getSteps = (lang: string, course: string): Step[] => {
     },
     russian: {
       question: "Yakuniy rus tili darajangiz qaysi bo'lishi kerak?",
+      subtitle: "Maqsadingizni tanlang",
+      grid: true,
+      options: ["A1", "A2", "B1", "B2", "C1", "C2"].map((v) => ({ label: v, value: v })),
+    },
+    german: {
+      question: "Yakuniy nemis tili darajangiz qaysi bo'lishi kerak?",
       subtitle: "Maqsadingizni tanlang",
       grid: true,
       options: ["A1", "A2", "B1", "B2", "C1", "C2"].map((v) => ({ label: v, value: v })),
@@ -174,6 +190,16 @@ const getSteps = (lang: string, course: string): Step[] => {
         { label: "Speaking / Gapirish", value: "speaking", emoji: "🗣️" },
       ],
     },
+    german: {
+      question: "Qaysi bo'limda ko'proq qiynalasiz?",
+      subtitle: "Rejangiz shu bo'limga ko'proq e'tibor beradi",
+      options: [
+        { label: "Lesen / O'qish", value: "reading", emoji: "📖" },
+        { label: "Hören / Eshitish", value: "listening", emoji: "🎧" },
+        { label: "Schreiben / Yozish", value: "writing", emoji: "✍️" },
+        { label: "Sprechen / Gapirish", value: "speaking", emoji: "🗣️" },
+      ],
+    },
   }[lang] || {
     question: "Qaysi bo'limda ko'proq qiynalasiz?",
     subtitle: "Rejangiz shu bo'limga ko'proq e'tibor beradi",
@@ -224,6 +250,15 @@ const getSteps = (lang: string, course: string): Step[] => {
     },
     russian: {
       question: "Imtihoningiz qachon?",
+      options: [
+        { label: "1–2 hafta ichida", value: "2_weeks", emoji: "🔴" },
+        { label: "1 oy ichida", value: "1_month", emoji: "🟠" },
+        { label: "2–3 oy ichida", value: "3_months", emoji: "🟢" },
+        { label: "Hali band qilmaganman", value: "not_booked", emoji: "📅" },
+      ],
+    },
+    german: {
+      question: "Goethe-Zertifikat imtihoningiz qachon?",
       options: [
         { label: "1–2 hafta ichida", value: "2_weeks", emoji: "🔴" },
         { label: "1 oy ichida", value: "1_month", emoji: "🟠" },
@@ -284,6 +319,15 @@ const getSteps = (lang: string, course: string): Step[] => {
         { label: "O'qish / Ta'lim", value: "study", emoji: "🎓" },
         { label: "Ish / Karyera / Biznes", value: "work", emoji: "💼" },
         { label: "Sayohat / Chet el", value: "immigration", emoji: "✈️" },
+        { label: "Shaxsiy rivojlanish", value: "personal", emoji: "⭐" },
+      ],
+    },
+    german: {
+      question: "Nemis tili sizga nima uchun kerak?",
+      options: [
+        { label: "Germaniyada o'qish (Ausbildung/Uni)", value: "study", emoji: "🎓" },
+        { label: "Germaniyada ishlash", value: "work", emoji: "💼" },
+        { label: "Ko'chib ketish (Immigratsiya)", value: "immigration", emoji: "✈️" },
         { label: "Shaxsiy rivojlanish", value: "personal", emoji: "⭐" },
       ],
     },
@@ -433,11 +477,14 @@ export default function StartQuiz() {
     if (lang === "chinese") {
       return levelValue === "beginner" ? "HSK 1" : levelValue === "intermediate" ? "HSK 3" : levelValue === "advanced" ? "HSK 5" : "HSK 2";
     }
+    if (lang === "german") {
+      return levelValue === "beginner" ? "A2" : levelValue === "intermediate" ? "B1" : levelValue === "advanced" ? "C1" : "B1";
+    }
     return levelValue === "beginner" ? "A2" : levelValue === "intermediate" ? "B1" : levelValue === "advanced" ? "C1" : "B1";
   };
 
   // Derived plan
-  const targetBand = answers.target || (selectedLang === "english" ? "7.0" : selectedLang === "korean" ? "4-Daraja" : selectedLang === "japanese" ? "N2" : selectedLang === "chinese" ? "HSK 4" : "B2");
+  const targetBand = answers.target || (selectedLang === "english" ? "7.0" : selectedLang === "korean" ? "4-Daraja" : selectedLang === "japanese" ? "N2" : selectedLang === "chinese" ? "HSK 4" : selectedLang === "german" ? "B2" : "B2");
   const projectedStr = getProjectedLevel(selectedLang, answers.level || "unknown");
   
   const weaknessLabel: Record<string, string> = { 
@@ -514,6 +561,7 @@ export default function StartQuiz() {
                 { id: "japanese", name: "日本語", native: "Japanese · JLPT" },
                 { id: "korean", name: "한국어", native: "Korean · TOPIK" },
                 { id: "chinese", name: "中文", native: "Chinese · HSK" },
+                { id: "german", name: "Deutsch", native: "German · Goethe" },
               ].map((lang) => {
                 const isActive = selectedLang === lang.id;
                 return (

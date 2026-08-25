@@ -16,6 +16,7 @@ export function AmbientBackground() {
     chinese: { top: "bg-red-500/10", bottom: "bg-yellow-500/10" },
     japanese: { top: "bg-red-600/10", bottom: "bg-zinc-500/10" },
     russian: { top: "bg-blue-600/10", bottom: "bg-red-600/10" },
+    german: { top: "bg-red-500/10", bottom: "bg-amber-500/10" },
   };
 
   const theme = mounted ? (colors[currentLang] || colors.english) : colors.english;

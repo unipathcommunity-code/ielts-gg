@@ -719,7 +719,7 @@ export default function JarvisTutor() {
     // ielts_practice_language (which is the exam FORMAT test pages use — TOPIK/HSK/JLPT/etc.).
     // Falls back to the legacy shared key once for existing users, then stays independent.
     const savedLang = localStorage.getItem("jarvis_chat_language") || localStorage.getItem("ielts_practice_language");
-    if (savedLang === "english" || savedLang === "korean" || savedLang === "chinese" || savedLang === "japanese" || savedLang === "russian" || savedLang === "uzbek" || savedLang === "auto") {
+    if (savedLang === "english" || savedLang === "korean" || savedLang === "chinese" || savedLang === "japanese" || savedLang === "russian" || savedLang === "uzbek" || savedLang === "auto" || savedLang === "german") {
       setLanguage(savedLang as any);
     }
     const savedConvMode = localStorage.getItem("ielts_conversation_mode");

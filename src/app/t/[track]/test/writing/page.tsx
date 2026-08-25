@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useTargetLevel } from "@/lib/usePrepPlan";
 import { useHydrated } from "@/lib/clientStore";
@@ -391,18 +391,19 @@ function CorrectionCard({ corr, index }: { corr: { original: string; corrected: 
           <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-2">
             <span className="text-red-400 text-[10px] font-bold uppercase tracking-wider block mb-1">
               вљ пёЏ Original
+              ⚠️ Original
             </span>
             <p className="italic text-zinc-300">"{corr.original}"</p>
           </div>
           <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-2">
             <span className="text-green-400 text-[10px] font-bold uppercase tracking-wider block mb-1">
-              вњ… Corrected
+              ✅ Corrected
             </span>
             <p className="font-medium text-zinc-100">"{corr.corrected}"</p>
           </div>
           <div className="bg-zinc-700/30 rounded-lg p-2">
             <span className="text-zinc-400 text-[10px] font-bold uppercase tracking-wider block mb-1">
-              рџ’Ў Explanation
+              💡 Explanation
             </span>
             <p className="text-zinc-300">{corr.explanation}</p>
           </div>
@@ -412,19 +413,21 @@ function CorrectionCard({ corr, index }: { corr: { original: string; corrected: 
   );
 }
 
-// в”Ђв”Ђв”Ђ FeedbackCard в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
+// ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 function FeedbackCard({
   title,
   taskNum,
   feedback,
   expanded,
   onToggle,
+  track,
 }: {
   title: string;
   taskNum: 1 | 2;
   feedback: TaskFeedback;
   expanded: boolean;
   onToggle: () => void;
+  track: { id: string };
 }) {
   return (
     <div className="bg-zinc-900 border border-zinc-700/60 rounded-2xl overflow-hidden shadow-xl">
@@ -443,13 +446,16 @@ function FeedbackCard({
           <div>
             <div className="font-bold text-zinc-100">{title}</div>
             <div className="text-xs text-zinc-400 mt-0.5">
-              Task {taskNum} вЂ” {taskNum === 1 ? "150 words min" : "250 words min"}
+              {(track.id === 'ielts' || track.id === 'multilevel') ? 
+                `Task ${taskNum} — ${taskNum === 1 ? "150 words min" : "250 words min"}` : 
+                `Vazifa ${taskNum}`
+              }
             </div>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <div className={`text-2xl font-bold ${bandColor(feedback.score)}`}>{feedback.score}</div>
-          <span className="text-zinc-500 text-lg">{expanded ? "в–І" : "в–ј"}</span>
+          <span className="text-zinc-500 text-lg">{expanded ? "▲" : "▼"}</span>
         </div>
       </div>
 
@@ -457,10 +463,14 @@ function FeedbackCard({
         <div className="border-t border-zinc-700/50 p-5 space-y-6">
           <div className="flex flex-wrap gap-3">
             <ScoreBadge label="Overall" value={feedback.score} />
-            <ScoreBadge label={taskNum === 1 ? "TA" : "TR"} value={feedback.taskResponse} />
-            <ScoreBadge label="CC" value={feedback.coherence} />
-            <ScoreBadge label="LR" value={feedback.lexical} />
-            <ScoreBadge label="GRA" value={feedback.grammar} />
+            {(track.id === 'ielts' || track.id === 'multilevel') && (
+              <>
+                <ScoreBadge label={taskNum === 1 ? "TA" : "TR"} value={feedback.taskResponse} />
+                <ScoreBadge label="CC" value={feedback.coherence} />
+                <ScoreBadge label="LR" value={feedback.lexical} />
+                <ScoreBadge label="GRA" value={feedback.grammar} />
+              </>
+            )}
           </div>
 
           <div>
@@ -1274,18 +1284,20 @@ export default function WritingTest() {
 
                 {/* Detailed feedback */}
                 <FeedbackCard
-                  title={`Task 1 вЂ” ${task1Prompt.title}`}
+                  title={`Task 1 — ${task1Prompt.title}`}
                   taskNum={1}
                   feedback={task1Feedback}
                   expanded={expandedCard === 1}
                   onToggle={() => setExpandedCard(expandedCard === 1 ? null : 1)}
+                  track={track}
                 />
                 <FeedbackCard
-                  title={`Task 2 вЂ” ${task2Prompt.type}`}
+                  title={`Task 2 — ${task2Prompt.type}`}
                   taskNum={2}
                   feedback={task2Feedback}
                   expanded={expandedCard === 2}
                   onToggle={() => setExpandedCard(expandedCard === 2 ? null : 2)}
+                  track={track}
                 />
 
                 {/* Action buttons */}

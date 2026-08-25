@@ -15,6 +15,7 @@ function pickVoice(lang: string, uzbekVoice?: string, female?: boolean): string 
   if (lang === 'chinese') return female ? 'zh-CN-XiaoxiaoNeural' : 'zh-CN-YunxiNeural';
   if (lang === 'japanese') return female ? 'ja-JP-NanamiNeural' : 'ja-JP-KeitaNeural';
   if (lang === 'russian') return female ? 'ru-RU-SvetlanaNeural' : 'ru-RU-DmitryNeural';
+  if (lang === 'german') return female ? 'de-DE-AmalaNeural' : 'de-DE-KillianNeural';
   return female ? 'en-GB-SoniaNeural' : 'en-GB-RyanNeural';
 }
 
@@ -99,7 +100,7 @@ export async function POST(request: Request) {
     }
 
     // ── Azure Neural TTS (when a key is configured) ──
-    const xmlLang = lang === 'uzbek' ? 'uz-UZ' : lang === 'korean' ? 'ko-KR' : lang === 'chinese' ? 'zh-CN' : lang === 'japanese' ? 'ja-JP' : lang === 'russian' ? 'ru-RU' : 'en-GB';
+    const xmlLang = lang === 'uzbek' ? 'uz-UZ' : lang === 'korean' ? 'ko-KR' : lang === 'chinese' ? 'zh-CN' : lang === 'japanese' ? 'ja-JP' : lang === 'russian' ? 'ru-RU' : lang === 'german' ? 'de-DE' : 'en-GB';
     const ssml = `<speak version='1.0' xml:lang='${xmlLang}'><voice name='${voiceName}'><prosody rate='0%' pitch='0%'>${escapeXml(text)}</prosody></voice></speak>`;
     const ttsResponse = await fetch(`https://${azureRegion}.tts.speech.microsoft.com/cognitiveservices/v1`, {
       method: 'POST',

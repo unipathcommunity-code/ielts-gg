@@ -63,30 +63,30 @@ CRITICAL INSTRUCTIONS:
       }
     }
 
-    const systemPrompt = `You are a professional educational assessor and exam curriculum designer for ${language} exams (e.g., JLPT for Japanese, TOPIK for Korean, HSK for Chinese, TRKI/CEFR for Russian).
+    const systemPrompt = `You are a professional educational assessor and exam curriculum designer for ${language} exams (e.g., JLPT for Japanese, TOPIK for Korean, HSK for Chinese, TRKI/CEFR for Russian, Goethe-Zertifikat for German).
 Your task is to transform the provided English IELTS exam content (reading passage, listening transcript, questions, or writing prompts) into an authentic, native, high-quality exam material in the target language (${language}).
 
 CRITICAL CONVERSION INSTRUCTIONS (Do NOT just translate word-for-word!):
 1. Transcreate & Localize Content:
    Instead of translating IELTS topics literally (e.g. Origins of the Universe), you MUST map and rewrite the text into a culturally and academically authentic topic for ${language} exams:
    - For Reading Passages (when the input has "paragraphs"):
-     * Map 'universe' (Origins of the Universe) -> 'Traditional Philosophy/Aesthetics' (e.g. Wabi-Sabi for Japanese, Pushkin/Tolstoy for Russian, Jeong Culture for Korean, Great Wall/Confucius for Chinese).
-     * Map 'ai' (Evolution of AI) -> 'National Traditions & Etiquette' (e.g. Omotenashi for Japanese, Hermitage Museum for Russian, Hanok Architecture for Korean, Traditional Festivities for Chinese).
-     * Map 'tea' (History of Tea) -> 'Engineering/Scientific Innovations' (e.g. Shinkansen for Japanese, Trans-Siberian Railway for Russian, Invention of Hangul for Korean, Traditional Medicine for Chinese).
-     * Map 'sleep' (Science of Sleep) -> 'Traditional Arts & Folk Crafts' (e.g. Matsuri/Kabuki for Japanese, Matryoshka/Gzhel for Russian, Hanbok Fashion for Korean, Chinese Calligraphy for Chinese).
-     * Map 'energy' (Renewable Energy) -> 'Geography, Nature & Livelihood' (e.g. Ikigai/Work Culture for Japanese, Lake Baikal for Russian, Korean Tea Ceremony for Korean, Mid-Autumn Festival for Chinese).
+     * Map 'universe' (Origins of the Universe) -> 'Traditional Philosophy/Aesthetics' (e.g. Wabi-Sabi for Japanese, Pushkin/Tolstoy for Russian, Jeong Culture for Korean, Great Wall/Confucius for Chinese, Bauhaus/Grimm Brothers for German).
+     * Map 'ai' (Evolution of AI) -> 'National Traditions & Etiquette' (e.g. Omotenashi for Japanese, Hermitage Museum for Russian, Hanok Architecture for Korean, Traditional Festivities for Chinese, Oktoberfest/Carnival for German).
+     * Map 'tea' (History of Tea) -> 'Engineering/Scientific Innovations' (e.g. Shinkansen for Japanese, Trans-Siberian Railway for Russian, Invention of Hangul for Korean, Traditional Medicine for Chinese, Autobahn/Automotive for German).
+     * Map 'sleep' (Science of Sleep) -> 'Traditional Arts & Folk Crafts' (e.g. Matsuri/Kabuki for Japanese, Matryoshka/Gzhel for Russian, Hanbok Fashion for Korean, Chinese Calligraphy for Chinese, Classical Music/Beethoven for German).
+     * Map 'energy' (Renewable Energy) -> 'Geography, Nature & Livelihood' (e.g. Ikigai/Work Culture for Japanese, Lake Baikal for Russian, Korean Tea Ceremony for Korean, Mid-Autumn Festival for Chinese, Black Forest/Rhine for German).
    - For Listening Transcripts (when the input has "transcript"):
-     * Transcreate dialogue to take place in a native setting (e.g. Moscow for Russian, Tokyo for Japanese, Seoul for Korean, Beijing for Chinese) between native speakers discussing local topics.
+     * Transcreate dialogue to take place in a native setting (e.g. Moscow for Russian, Tokyo for Japanese, Seoul for Korean, Beijing for Chinese, Berlin for German) between native speakers discussing local topics.
    - For Writing Prompts (when the input has task1/task2 prompts):
      * Adapt prompts to match local exam topics (e.g., TOPIK Task 53/54 style, HSK character writing, or TRKI essays).
 
 2. Calibrate Difficulty:
-   - Target Candidate Level: ${targetLevel || 'Intermediate (e.g. B2 / JLPT N2 / TOPIK 4 / HSK 4)'}.
+   - Target Candidate Level: ${targetLevel || 'Intermediate (e.g. B2 / JLPT N2 / TOPIK 4 / HSK 4 / Goethe B2)'}.
    - Adapt vocabulary, grammar patterns, character density, and complexity to perfectly match this target level of the standard exam for ${language}.
 
 3. Reformulate Questions:
    - For Reading Passages:
-     * Standard exams like JLPT, TOPIK, HSK, and TRKI do NOT have matching paragraph info or True/False/Not Given questions. You MUST reformulate these questions into 7 standard Multiple Choice Questions (MCQs) in the target language based on the rewritten text!
+     * Standard exams like JLPT, TOPIK, HSK, TRKI, and Goethe do NOT have matching paragraph info or True/False/Not Given questions. You MUST reformulate these questions into 7 standard Multiple Choice Questions (MCQs) in the target language based on the rewritten text!
      * Remove "matchingQuestions" and "tfQuestions" from the output.
      * Add "mcqQuestions": an array of 7 questions. Each question must look like:
        { "id": "q1", "number": "1.", "text": "Question stem or cloze prompt in the target language", "options": ["Option A", "Option B", "Option C", "Option D"] }

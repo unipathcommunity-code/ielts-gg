@@ -3,7 +3,7 @@
 // The other languages get their own exam name, skill availability, and native score scale —
 // instead of silently reusing the IELTS Reading/Listening/Writing/Speaking + 0-9 band shape.
 
-export type PracticeLanguage = "english" | "russian" | "japanese" | "korean" | "chinese";
+export type PracticeLanguage = "english" | "russian" | "japanese" | "korean" | "chinese" | "german";
 export type SkillKey = "reading" | "listening" | "writing" | "speaking";
 
 export interface SkillAvailability {
@@ -140,6 +140,28 @@ const EXAM_FORMATS: Record<PracticeLanguage, ExamFormat> = {
     },
     gradingRubricNote: "Grade against JLPT-style expectations for the relevant N-level: grammar-point accuracy, vocabulary/kanji range, and reading/listening comprehension — not IELTS descriptors. Note JLPT itself has no official writing/speaking section, so treat these as supplementary skill practice.",
     certificateThreshold: 6.5,
+  },
+  german: {
+    id: "german",
+    languageName: "Nemis tili",
+    examName: "Goethe-Zertifikat",
+    scoreLabel: "CEFR Darajasi",
+    availableSkills: {
+      reading: { official: true },
+      listening: { official: true },
+      writing: { official: true },
+      speaking: { official: true },
+    },
+    nativeScoreFromBand: (band) => {
+      if (band >= 8.5) return "C2";
+      if (band >= 7.0) return "C1";
+      if (band >= 5.5) return "B2";
+      if (band >= 4.0) return "B1";
+      if (band >= 3.0) return "A2";
+      return "A1";
+    },
+    gradingRubricNote: "Grade against Goethe-Zertifikat (CEFR) criteria: grammatical accuracy, vocabulary breadth, communicative competence, and situational appropriateness — not IELTS descriptors.",
+    certificateThreshold: 6.0,
   },
 };
 

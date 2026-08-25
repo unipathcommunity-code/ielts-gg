@@ -1406,13 +1406,19 @@ export default function SpeakingTest() {
             <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">AI Speaking Test Examiner</h1>
             
             <p className={`text-base mb-8 max-w-lg mx-auto leading-relaxed ${c ? "text-zinc-400" : "text-zinc-650"}`}>
-              Haqiqiy {track.shortTitle} formati bo&apos;yicha tayyorlaning: Part 1 → Part 2 → Part 3. Sun&apos;iy intellekt imtihonchisi sizning ravonlik, lug&apos;at boyligi, grammatika va talaffuzingizni baholaydi.
+              {(track.id === 'ielts' || track.id === 'multilevel') ? (
+                `Haqiqiy ${track.shortTitle} formati bo'yicha tayyorlaning: Part 1 → Part 2 → Part 3. Sun'iy intellekt imtihonchisi sizning ravonlik, lug'at boyligi, grammatika va talaffuzingizni baholaydi.`
+              ) : (
+                `${track.shortTitle} uchun og'zaki suhbat mashqi: 3 bosqichli suhbat. Sun'iy intellekt imtihonchisi sizning talaffuzingiz va ravonligingizni baholaydi.`
+              )}
             </p>
             
             <div className={`grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left rounded-2xl p-6 border ${card}`}>
               <div className="flex flex-col justify-between">
                 <div>
-                  <div className="text-amber-500 font-black text-xs uppercase tracking-wider mb-1">PART 1: Interview</div>
+                  <div className="text-amber-500 font-black text-xs uppercase tracking-wider mb-1">
+                    {(track.id === 'ielts' || track.id === 'multilevel') ? 'PART 1: Interview' : 'Bosqich 1: Savol-javob'}
+                  </div>
                   <div className={`text-xs ${c ? "text-zinc-400" : "text-zinc-500"} leading-relaxed`}>
                     General questions about: <br/>
                     <span className="font-bold text-foreground">{selectedTopic.name}</span>
@@ -1422,7 +1428,9 @@ export default function SpeakingTest() {
               
               <div className="flex flex-col justify-between border-t md:border-t-0 md:border-x border-zinc-900/10 dark:border-zinc-800/60 pt-4 md:pt-0 md:px-4">
                 <div>
-                  <div className="text-amber-500 font-black text-xs uppercase tracking-wider mb-1">PART 2: Cue Card</div>
+                  <div className="text-amber-500 font-black text-xs uppercase tracking-wider mb-1">
+                    {(track.id === 'ielts' || track.id === 'multilevel') ? 'PART 2: Cue Card' : 'Bosqich 2: Monolog'}
+                  </div>
                   <div className={`text-xs ${c ? "text-zinc-400" : "text-zinc-500"} leading-relaxed line-clamp-3`}>
                     Speak for 1-2 minutes: <br/>
                     <span className="font-bold text-foreground">"{selectedCue.topic}"</span>
@@ -1432,7 +1440,9 @@ export default function SpeakingTest() {
               
               <div className="flex flex-col justify-between border-t md:border-t-0 pt-4 md:pt-0 md:pl-2">
                 <div>
-                  <div className="text-amber-500 font-black text-xs uppercase tracking-wider mb-1">PART 3: Discussion</div>
+                  <div className="text-amber-500 font-black text-xs uppercase tracking-wider mb-1">
+                    {(track.id === 'ielts' || track.id === 'multilevel') ? 'PART 3: Discussion' : 'Bosqich 3: Muhokama'}
+                  </div>
                   <div className={`text-xs ${c ? "text-zinc-400" : "text-zinc-500"} leading-relaxed`}>
                     Deeper discussion about: <br/>
                     <span className="font-bold text-foreground">{selectedCue.part3Topic}</span>
@@ -1571,13 +1581,13 @@ export default function SpeakingTest() {
             )}
 
             {currentPart === 1 && (
-              <div className="text-[10px] uppercase font-mono font-black tracking-widest mb-2 text-amber-500">
-                Part 1 — Question {questionIndex + 1} / 5
+              <div className="absolute top-8 text-xs font-bold text-zinc-500 uppercase tracking-[0.2em]">
+                {(track.id === 'ielts' || track.id === 'multilevel') ? 'Part 1' : 'Bosqich 1'} — Question {questionIndex + 1} / 5
               </div>
             )}
             {currentPart === 3 && (
-              <div className="text-[10px] uppercase font-mono font-black tracking-widest mb-2 text-amber-500">
-                Part 3 — Question {questionIndex + 1} / {part3Questions.length || 4}
+              <div className="absolute top-8 text-xs font-bold text-zinc-500 uppercase tracking-[0.2em]">
+                {(track.id === 'ielts' || track.id === 'multilevel') ? 'Part 3' : 'Bosqich 3'} — Question {questionIndex + 1} / {part3Questions.length || 4}
               </div>
             )}
 

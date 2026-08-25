@@ -9,7 +9,7 @@ import { useDisplaySettings, DisplaySettings } from "@/components/DisplaySetting
 import { supabase } from "@/lib/supabase";
 import { usePracticeLanguage } from "@/lib/usePracticeLanguage";
 import { useTrack } from "@/lib/useTrack";
-import { trackScore } from "@/lib/tracks";
+import { trackScore, trackSection } from "@/lib/tracks";
 import { appendTestHistory, loadTestHistory } from "@/lib/useTestHistory";
 import { getExamFormat, nativeScoreLabel } from "@/lib/examFormats";
 import { Difficulty, DIFFICULTY_LABELS, DIFFICULTIES } from "@/lib/difficulty";
@@ -75,7 +75,12 @@ const qNum = (qid: string) => qid.replace(/[^0-9]/g, "");
 export default function ListeningTest() {
   const [tests, setTests] = useState<Record<string, ListeningTest>>(LISTENING_TESTS);
   const [testId, setTestId] = useState<string>("campus");
-  const [timeLeft, setTimeLeft] = useState(40 * 60); // 40 minutes
+  const { track } = useTrack();
+  const lSec = trackSection(track, "listening");
+  const trackMinutes = lSec?.minutes || 40;
+  const trackQuestions = lSec?.questions || 40;
+  
+  const [timeLeft, setTimeLeft] = useState(trackMinutes * 60);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState<any>(null);
@@ -141,7 +146,6 @@ export default function ListeningTest() {
   const isPlayingRef = useRef(false);
   
   const [currentLang] = usePracticeLanguage();
-  const { track } = useTrack();
   const targetLevel = useTargetLevel();
   // Faqat AI tarjimasi state'da saqlanadi; asl va qo'lda yozilgan milliy testlar —
   // hosila qiymat (effekt ichida setState qilish ortiqcha kadr chizardi).
@@ -611,10 +615,14 @@ export default function ListeningTest() {
             {/* Section 1 — Notes / Form completion (fill-in questions) */}
             {fillQs.length > 0 && (
               <div className="glass-card hover-3d-lift p-8 rounded-[2rem] shadow-xl transition-all duration-300">
-                <h2 className="text-xl font-bold mb-2">Section 1</h2>
-                <p className="text-xs text-zinc-500 mb-6 italic">
-                  Questions 1-{fillQs.length}. Complete the notes below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.
-                </p>
+                {(track.id === 'ielts' || track.id === 'multilevel') && (
+                  <>
+                    <h2 className="text-xl font-bold mb-2">Section 1</h2>
+                    <p className="text-xs text-zinc-500 mb-6 italic">
+                      Questions 1-{fillQs.length}. Complete the notes below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.
+                    </p>
+                  </>
+                )}
 
                 <div className={`p-6 rounded-xl border space-y-4 ${theme === 'dark' ? 'bg-zinc-900/40 border-zinc-900' : 'bg-zinc-50 border-zinc-200 text-zinc-900'}`}>
                   <h3 className="font-bold text-center underline mb-6 text-zinc-400">{currentTest.title}</h3>
@@ -651,10 +659,14 @@ export default function ListeningTest() {
             {/* Section 2 — Multiple choice */}
             {mcqQs.length > 0 && (
               <div className="glass-card hover-3d-lift p-8 rounded-[2rem] shadow-xl transition-all duration-300">
-                <h2 className="text-xl font-bold mb-2">Section 2</h2>
-                <p className="text-xs text-zinc-500 mb-6 italic">
-                  Questions {qNum(mcqQs[0].qid)}-{qNum(mcqQs[mcqQs.length - 1].qid)}. Choose the correct letter, A, B, or C.
-                </p>
+                {(track.id === 'ielts' || track.id === 'multilevel') && (
+                  <>
+                    <h2 className="text-xl font-bold mb-2">Section 2</h2>
+                    <p className="text-xs text-zinc-500 mb-6 italic">
+                      Questions {qNum(mcqQs[0].qid)}-{qNum(mcqQs[mcqQs.length - 1].qid)}. Choose the correct letter, A, B, or C.
+                    </p>
+                  </>
+                )}
 
                 <div className="space-y-6">
                   {mcqQs.map((q: any) => (

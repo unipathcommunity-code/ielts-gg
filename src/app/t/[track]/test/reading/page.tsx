@@ -10,7 +10,7 @@ import { useDisplaySettings, DisplaySettings, MIN_SCALE, MAX_SCALE } from "@/com
 import { supabase } from "@/lib/supabase";
 import { usePracticeLanguage } from "@/lib/usePracticeLanguage";
 import { useTrack } from "@/lib/useTrack";
-import { trackScore } from "@/lib/tracks";
+import { trackScore, trackSection } from "@/lib/tracks";
 import { appendTestHistory, loadTestHistory } from "@/lib/useTestHistory";
 import { getExamFormat, nativeScoreLabel } from "@/lib/examFormats";
 import { Difficulty, DIFFICULTY_LABELS, DIFFICULTIES } from "@/lib/difficulty";
@@ -372,9 +372,13 @@ function getAllQQuestions() {
 
 export default function ReadingTest() {
   const { track } = useTrack();
+  const rSec = trackSection(track, "reading");
+  const trackMinutes = rSec?.minutes || 60;
+  const trackQuestions = rSec?.questions || 40;
+  
   const [activePassageTab, setActivePassageTab] = useState(track.id === "multilevel" ? "ml_part1" : "universe");
   const passageId = activePassageTab; // keep for compat
-  const [timeLeft, setTimeLeft] = useState(60 * 60); // 60 minutes
+  const [timeLeft, setTimeLeft] = useState(trackMinutes * 60);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState<any>(null);
@@ -827,7 +831,7 @@ export default function ReadingTest() {
                   </button>
                 ))}
                 <span className={`text-[10px] font-mono ml-2 ${theme === 'dark' ? 'text-zinc-500' : 'text-zinc-400'}`}>
-                  42 questions В· 60 min
+                  {trackQuestions} questions · {trackMinutes} min
                 </span>
               </div>
             )}

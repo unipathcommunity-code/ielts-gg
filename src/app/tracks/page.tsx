@@ -20,6 +20,7 @@ const LANGUAGE_GROUPS: { id: string; label: string }[] = [
   { id: "chinese", label: "Xitoy tili" },
   { id: "japanese", label: "Yapon tili" },
   { id: "russian", label: "Rus tili" },
+  { id: "german", label: "Nemis tili" },
 ];
 
 const STATUS_LABEL: Record<Track["status"], string | null> = {
