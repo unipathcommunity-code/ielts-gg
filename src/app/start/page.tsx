@@ -554,7 +554,7 @@ export default function StartQuiz() {
           <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-300" key={step}>
             <h1 className="text-2xl md:text-3xl font-bold mb-2">Qaysi tilni o'rganmoqchisiz?</h1>
             <p className="text-zinc-500 mb-8">O'rganish kursini tanlang — keyinroq o'zgartirish mumkin</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
               {[
                 { id: "english", name: "English", native: "IELTS · Academic" },
                 { id: "russian", name: "Русский", native: "Разговорный курс" },

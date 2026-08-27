@@ -55,7 +55,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-amber-500 blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500"></div>
               <img src="/logo.jpg" alt="kmb.education logo" className="relative w-10 h-10 rounded-[12px] object-cover shadow-sm border border-zinc-200/50 dark:border-white/10" />
             </div>
-            <span className="text-xl font-black tracking-tight text-black dark:text-white">
+            <span className="hidden sm:inline-block text-xl font-black tracking-tight text-black dark:text-white">
               kmb<span className="text-amber-500">.education</span>
             </span>
           </Link>
@@ -115,7 +115,7 @@ export default function Home() {
               <span className="bg-gradient-to-r from-zinc-800 to-zinc-500 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">GLOBAL TIL O'RGANISH EKOTIZIMI</span>
             </motion.div>
             
-            <motion.h1 variants={itemVariants} className="text-[3.5rem] sm:text-6xl md:text-[6rem] lg:text-[7rem] font-black tracking-tighter mb-8 leading-[0.95]">
+            <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl md:text-[6rem] lg:text-[7rem] font-black tracking-tighter mb-8 leading-[0.95]">
               <span className="text-zinc-900 dark:text-white block">Mutlaqo 0 dan</span>
               <span className="relative inline-block mt-2">
                 <span className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-cyan-500/20 blur-3xl rounded-full"></span>

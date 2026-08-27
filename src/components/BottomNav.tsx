@@ -30,7 +30,7 @@ export function BottomNav() {
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden pb-safe">
       <div className="bg-white/90 dark:bg-[#09090b]/90 backdrop-blur-xl border-t border-zinc-200 dark:border-zinc-800 px-6 py-3 flex justify-between items-center shadow-[0_-10px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
         {navItems.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive = pathname === item.href || (item.href === "/dashboard" && pathname.startsWith("/t/"));
           return (
             <Link 
               key={item.href} 
